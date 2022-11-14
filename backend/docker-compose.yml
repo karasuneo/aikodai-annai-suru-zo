@@ -1,7 +1,7 @@
 version: "3"
 services:
   go:
-    container_name: koukaten2022_GO
+    container_name: ANNAISURUZO_GO
     build:
       context: ./docker/go
       dockerfile: Dockerfile
@@ -11,9 +11,6 @@ services:
       - ./Docker/go/.env
     volumes:
       - ./go:/go/src/app # マウントディレクトリ
-      # - type: bind
-      #   source: ./go
-      #   target: /go/app
     ports:
       - 8080:8080
     depends_on:
@@ -21,7 +18,7 @@ services:
     
 
   mysql:
-    container_name: koukaten2022_DB
+    container_name: ANNAISURUZO_DB
     build:
       context: ./docker/mysql
       dockerfile: Dockerfile
