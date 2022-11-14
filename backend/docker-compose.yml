@@ -1,22 +1,23 @@
 version: "3"
 services:
-  # go:
-  #   container_name: koukaten2022_GO
-  #   build:
-  #     context: ./docker/app
-  #     dockerfile: Dockerfile
-  #   stdin_open: true
-  #   tty: true
-  #   env_file:
-  #     - ./Docker/app/.env
-  #   volumes:
-  #     - type: bind
-  #       source: ./go
-  #       target: /go/app
-  #   ports:
-  #     - 8080:8080
-  #   depends_on:
-  #     - "mysql"
+  go:
+    container_name: koukaten2022_GO
+    build:
+      context: ./docker/go
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    env_file:
+      - ./Docker/go/.env
+    volumes:
+      - ./go:/go/src/app # マウントディレクトリ
+      # - type: bind
+      #   source: ./go
+      #   target: /go/app
+    ports:
+      - 8080:8080
+    depends_on:
+      - "mysql"
     
 
   mysql:
