@@ -3,7 +3,7 @@ package article
 import (
 	"fmt"
 
-	"github.com/karasuneo/mysql-gin-connect/backend/lib"
+	"github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
 )
 
 type Article struct {

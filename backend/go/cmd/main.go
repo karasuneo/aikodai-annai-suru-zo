@@ -3,7 +3,7 @@ package main
 import (
 	
 	"github.com/gin-gonic/gin"
-	DataSets "go/search/model/data_sets"
+
 )
 
 func main() {
@@ -11,9 +11,9 @@ func main() {
 	
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
-		d := DataSets.GetBuildingAll()
+		// d := DataSets.GetBuildingAll()
 		c.JSON(200, gin.H{
-			"result": d,
+			"result": "jjj",
 		})
 	})
 	r.Run()
