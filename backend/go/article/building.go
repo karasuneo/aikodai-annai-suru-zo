@@ -7,26 +7,20 @@ import (
 )
 
 type Building struct {
-	BuildingName string      `gorm:"primarykey:BuildingName"`
-	ClassRooms   []ClassRoom `gorm:"foreignkey:BuildingName"`
-	Latitude     string
-	Longitude    string
+	BuildingName string `json:"buildingName"`
+	Latitude     string `json:"latitude"`
+	Longitude    string `json:"longitude"`
 }
 
-type Article struct {
-	Title       string `json:"title"`
-	Description string `json:"description"`
+type Buildings struct {
+	Items []Building
 }
 
-type Articles struct {
-	Items []Article
+func New() *Buildings {
+	return &Buildings{}
 }
 
-func New() *Articles {
-	return &Articles{}
-}
-
-func (r *Articles) Add(a Article) {
+func (r *Buildings) Add(a Building) {
 	r.Items = append(r.Items, a)
 	db := lib.GetDBConn().DB
 	if err := db.Create(a).Error; err != nil {
@@ -34,11 +28,11 @@ func (r *Articles) Add(a Article) {
 	}
 }
 
-func (r *Articles) GetAll() []Article {
+func (r *Buildings) GetAll() []Building {
 	db := lib.GetDBConn().DB
-	var articles []Article
-	if err := db.Find(&articles).Error; err != nil {
+	var buildings []Building
+	if err := db.Find(&buildings).Error; err != nil {
 		return nil
 	}
-	return articles
+	return buildings
 }
