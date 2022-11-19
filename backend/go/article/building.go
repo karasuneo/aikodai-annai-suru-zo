@@ -6,6 +6,13 @@ import (
 	"github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
 )
 
+type Building struct {
+	BuildingName string      `gorm:"primarykey:BuildingName"`
+	ClassRooms   []ClassRoom `gorm:"foreignkey:BuildingName"`
+	Latitude     string
+	Longitude    string
+}
+
 type Article struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
