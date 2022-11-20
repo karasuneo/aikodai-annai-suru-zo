@@ -1,5 +1,6 @@
 package model
 
+import 
 //BuildingテーブルとClassRoomテーブルを結合
 func CombineBuildingWithClassRoom() []*Building {
 	//構造体の定義

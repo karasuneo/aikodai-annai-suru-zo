@@ -1,5 +1,10 @@
 package model
 
+import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
+
+
+var db := lib.db
+
 // Subject テーブル情報
 type Subject struct {
 	ID             int

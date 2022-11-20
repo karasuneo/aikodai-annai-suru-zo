@@ -1,5 +1,7 @@
 package model
 
+import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
+
 // Building テーブル情報
 type Building struct {
 	BuildingName string      `gorm:"primarykey:BuildingName"`
