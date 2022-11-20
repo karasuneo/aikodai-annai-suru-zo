@@ -1,4 +1,4 @@
-package model_student
+package student
 
 import "strconv"
 

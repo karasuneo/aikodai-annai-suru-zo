@@ -1,4 +1,4 @@
-package model_student
+package student
 
 func CombineUserWithSchedule() []*User {
 	//構造体の定義

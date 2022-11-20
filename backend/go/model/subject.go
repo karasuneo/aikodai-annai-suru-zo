@@ -1,6 +1,5 @@
 package model
 
-
 // Subject テーブル情報
 type Subject struct {
 	ID             int
@@ -15,8 +14,6 @@ type Subject struct {
 	Classification string
 	Credit         int
 }
-
-
 
 // Subjectの全てのデータを取得
 func GetSubjectAll() []*Subject {
