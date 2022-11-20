@@ -1,4 +1,4 @@
-package model_data_sets
+package model
 
 // ClassRoom テーブル情報
 type ClassRoom struct {

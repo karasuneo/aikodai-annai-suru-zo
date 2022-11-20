@@ -1,4 +1,4 @@
-package model_data_sets
+package model
 
 import (
 	"fmt"

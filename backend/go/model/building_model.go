@@ -1,4 +1,4 @@
-package model_data_sets
+package model
 
 // Building テーブル情報
 type Building struct {

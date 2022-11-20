@@ -1,4 +1,4 @@
-package model_data_sets
+package model
 
 //BuildingテーブルとClassRoomテーブルを結合
 func CombineBuildingWithClassRoom() []*Building {
