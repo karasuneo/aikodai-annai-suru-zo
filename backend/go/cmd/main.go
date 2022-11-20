@@ -9,7 +9,7 @@ func main() {
 
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
-		d := model.GetBuildingAll()
+		d := model.GetSubjectAll()
 		c.JSON(200, gin.H{
 			"result": d,
 		})

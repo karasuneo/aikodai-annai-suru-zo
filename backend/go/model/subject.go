@@ -25,7 +25,6 @@ func GetSubjectAll() []*Subject {
 
 func GetSubjectResult(faculty string, name string, grade string, day string, time string) []*Subject {
 	result := []*Subject{}
-
 	search := db.Where("")
 	if faculty != "" {
 		search.Where("folder_name LIKE ?", "%"+faculty+"%")
