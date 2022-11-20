@@ -1,4 +1,4 @@
-package model_data_sets
+package model
 
 // ClassRoom テーブル情報
 type ClassRoom struct {
@@ -9,13 +9,13 @@ type ClassRoom struct {
 	Floor        string
 }
 
-//ClassRoomの全てのデータを取得
+// ClassRoomの全てのデータを取得
 func GetClassRoomAll() []*ClassRoom {
 	result := CombineClassRoomWithSubject()
 	return result
 }
 
-//教室番号を検索してデータを取得
+// 教室番号を検索してデータを取得
 func GetRoomNumber(room_number string) []*ClassRoom {
 	result := CombineClassRoomWithSubject()
 	for _, r := range result {
@@ -26,7 +26,7 @@ func GetRoomNumber(room_number string) []*ClassRoom {
 	return result
 }
 
-//教室名を検索してデータを取得
+// 教室名を検索してデータを取得
 func GetRoomName(room_name string) []*ClassRoom {
 	result := CombineClassRoomWithSubject()
 	for _, r := range result {
@@ -37,7 +37,7 @@ func GetRoomName(room_name string) []*ClassRoom {
 	return result
 }
 
-//建物名を検索してデータを取得
+// 建物名を検索してデータを取得
 func GetClassRoomBuildingName(building_name string) []*ClassRoom {
 	result := CombineClassRoomWithSubject()
 	for _, r := range result {
@@ -48,7 +48,7 @@ func GetClassRoomBuildingName(building_name string) []*ClassRoom {
 	return result
 }
 
-//階層を検索してデータを取得
+// 階層を検索してデータを取得
 func GetFloor(floor string) []*ClassRoom {
 	result := CombineClassRoomWithSubject()
 	for _, r := range result {

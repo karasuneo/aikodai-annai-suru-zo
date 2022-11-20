@@ -1,4 +1,4 @@
-module go
+module github.com/karasuneo/aikodai-annai-suru-zo/go
 
 go 1.19
 

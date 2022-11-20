@@ -1,6 +1,10 @@
-package model_data_sets
+package model
 
-//BuildingテーブルとClassRoomテーブルを結合
+import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
+
+var db = lib.NewSQLHandler().DB
+
+// BuildingテーブルとClassRoomテーブルを結合
 func CombineBuildingWithClassRoom() []*Building {
 	//構造体の定義
 	building := []*Building{}
@@ -20,7 +24,7 @@ func CombineBuildingWithClassRoom() []*Building {
 	return building
 }
 
-//ClassRoomテーブルとSubjectテーブルを結合
+// ClassRoomテーブルとSubjectテーブルを結合
 func CombineClassRoomWithSubject() []*ClassRoom {
 	//構造体の定義
 	class_room := []*ClassRoom{}
