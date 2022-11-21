@@ -100,20 +100,6 @@ func GetSemester(semester string) []*Subject {
 	return result
 }
 
-//受講可能日を検索してデータを取得
-// func GetDay(day string) []*Subject {
-// 	result := []*Subject{}
-// 	db.Where("day_time LIKE ?", "%"+day+"%").Find(&result)
-// 	return result
-// }
-
-// //受講可能時間を検索してデータを取得
-// func GetTime(time string) []*Subject {
-// 	result := []*Subject{}
-// 	db.Where("day_time LIKE ?", "%"+time+"%").Find(&result)
-// 	return result
-// }
-
 func GetDayTime(day string, time string) []*Subject {
 	result := []*Subject{}
 	//db.Where("day_time LIKE ?", "%"+time+"%").Find(&result)
