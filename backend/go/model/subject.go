@@ -23,48 +23,6 @@ func GetSubjectAll() []*Subject {
 	return result
 }
 
-func GetSubjectResult(faculty string, name string, grade string, day string, time string) []*Subject {
-	result := []*Subject{}
-	search := db.Where("")
-	if faculty != "" {
-		search.Where("folder_name LIKE ?", "%"+faculty+"%")
-	}
-	if name != "" {
-		search.Where("subject_name LIKE ?", "%"+name+"%")
-	}
-	if grade != "" {
-		search.Where("grade LIKE ?", "%"+grade+"%")
-	}
-	if day != "" {
-		search.Where("day_time LIKE ?", "%"+day+"%")
-	}
-	if time != "" {
-		search.Where("day_time LIKE ?", "%"+time+"%")
-	}
-
-	search.Find(&result)
-
-	if len(result) == 190 {
-		result = nil
-	}
-
-	return result
-}
-
-// IDを検索してデータを取得
-func GetID(room_number string) []*Subject {
-	result := []*Subject{}
-	db.Where("id LIKE ?", "%"+room_number+"%").Find(&result)
-	return result
-}
-
-// 科目コードを検索してデータを取得
-func GetSubjectCode(subject_code string) []*Subject {
-	result := []*Subject{}
-	db.Where("subject_code LIKE ?", "%"+subject_code+"%").Find(&result)
-	return result
-}
-
 // 科目名を検索してデータを取得
 func GetSubjectName(subject_name string) []*Subject {
 	result := []*Subject{}
@@ -79,20 +37,6 @@ func GetGrade(grade string) []*Subject {
 	return result
 }
 
-// 教室コードを検索してデータを取得
-func GetClassCode(class_code string) []*Subject {
-	result := []*Subject{}
-	db.Where("class_code LIKE ?", "%"+class_code+"%").Find(&result)
-	return result
-}
-
-// 教室名を検索してデータを取得
-func GetClassRoom(class_room string) []*Subject {
-	result := []*Subject{}
-	db.Where("class_room LIKE ?", "%"+class_room+"%").Find(&result)
-	return result
-}
-
 // 受講可能学期を検索してデータを取得
 func GetSemester(semester string) []*Subject {
 	result := []*Subject{}
@@ -100,9 +44,9 @@ func GetSemester(semester string) []*Subject {
 	return result
 }
 
+// 対象科目の開講日時を取得
 func GetDayTime(day string, time string) []*Subject {
 	result := []*Subject{}
-	//db.Where("day_time LIKE ?", "%"+time+"%").Find(&result)
 	db.Where("day_time LIKE ? AND day_time LIKE ?", "%"+day+"%", "%"+time+"%").Find(&result)
 
 	return result
@@ -112,12 +56,5 @@ func GetDayTime(day string, time string) []*Subject {
 func GetClassification(classification string) []*Subject {
 	result := []*Subject{}
 	db.Where("classification LIKE ?", "%"+classification+"%").Find(&result)
-	return result
-}
-
-// クレジットを検索してデータを取得
-func GetCredit(credit string) []*Subject {
-	result := []*Subject{}
-	db.Where("credit LIKE ?", "%"+credit+"%").Find(&result)
 	return result
 }

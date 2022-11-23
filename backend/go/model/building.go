@@ -24,25 +24,3 @@ func GetBuildingBuildingName(building_name string) []*Building {
 	}
 	return result
 }
-
-// 経度を検索してデータを取得
-func GetLatitude(latitude string) []*Building {
-	result := CombineBuildingWithClassRoom()
-	for _, r := range result {
-		if r.BuildingName != latitude {
-			r = result[len(result)-1]
-		}
-	}
-	return result
-}
-
-// 緯度を検索してデータを取得
-func GetLongitude(longitude string) []*Building {
-	result := CombineBuildingWithClassRoom()
-	for _, r := range result {
-		if r.BuildingName != longitude {
-			r = result[len(result)-1]
-		}
-	}
-	return result
-}
