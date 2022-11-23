@@ -2,7 +2,7 @@ package model
 
 import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
 
-var db = lib.GetDB()
+var db = lib.SqlConnect()
 
 // BuildingテーブルとClassRoomテーブルを結合
 func CombineBuildingWithClassRoom() []*Building {
@@ -42,6 +42,5 @@ func CombineClassRoomWithSubject() []*ClassRoom {
 			}
 		}
 	}
-
 	return class_room
 }
