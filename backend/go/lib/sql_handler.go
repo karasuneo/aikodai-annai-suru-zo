@@ -14,8 +14,7 @@ func SqlConnect() (database *gorm.DB) {
 	PASS := os.Getenv("MYSQL_PASSWORD")
 	PROTOCOL := "tcp(koukaten2022_DB:3306)"
 	DBNAME := os.Getenv("MYSQL_DATABASE_DS")
-	fmt.Println(PASS)
-
+	
 	dsn := USER + ":" + PASS + "@" + PROTOCOL + "/" + DBNAME + "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 	dialector := mysql.Open(dsn)
 

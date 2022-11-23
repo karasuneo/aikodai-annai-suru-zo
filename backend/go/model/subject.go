@@ -17,7 +17,6 @@ type Subject struct {
 
 // Subjectの全てのデータを取得
 func GetSubjectAll() []*Subject {
-
 	result := []*Subject{}
 	db.Find(&result)
 	return result
@@ -48,7 +47,6 @@ func GetSemester(semester string) []*Subject {
 func GetDayTime(day string, time string) []*Subject {
 	result := []*Subject{}
 	db.Where("day_time LIKE ? AND day_time LIKE ?", "%"+day+"%", "%"+time+"%").Find(&result)
-
 	return result
 }
 
