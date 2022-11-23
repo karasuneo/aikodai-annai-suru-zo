@@ -2,7 +2,7 @@ package model
 
 import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
 
-var db = lib.NewSQLHandler().DB
+var db = lib.GetDB()
 
 // BuildingテーブルとClassRoomテーブルを結合
 func CombineBuildingWithClassRoom() []*Building {
