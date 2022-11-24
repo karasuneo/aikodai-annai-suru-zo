@@ -9,28 +9,11 @@ type ClassRoom struct {
 	Floor        string
 }
 
-// ClassRoomの全てのデータを取得
-func GetClassRoomAll() []*ClassRoom {
-	result := CombineClassRoomWithSubject()
-	return result
-}
-
 // 教室名を検索してデータを取得
 func GetRoomName(room_name string) []*ClassRoom {
 	result := CombineClassRoomWithSubject()
 	for _, r := range result {
 		if r.BuildingName != room_name {
-			r = result[len(result)-1]
-		}
-	}
-	return result
-}
-
-// 建物名を検索してデータを取得
-func GetClassRoomBuildingName(building_name string) []*ClassRoom {
-	result := CombineClassRoomWithSubject()
-	for _, r := range result {
-		if r.BuildingName != building_name {
 			r = result[len(result)-1]
 		}
 	}

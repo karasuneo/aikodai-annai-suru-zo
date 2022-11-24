@@ -17,16 +17,11 @@ func GetAll(c *gin.Context) {
 }
 
 func GetSearchBuildingResult(c *gin.Context) {
-	// var input Input
-	result := model.GetSubjectName("人工知能")
+	var input Input
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	result := model.GetBuildingBuildingName(input.BuildingName)
 	c.JSON(http.StatusOK, result)
-	// if err := c.ShouldBindJSON(&input); err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	// 	return
-	// }
-	// c.JSON(http.StatusOK, gin.H{"str": input.BuildingName})
 }
-
-// //buildingname.BuildingName = c.PostForm("buildingname")
-// result := model.GetBuildingBuildingName(input.BuildingName)
-// c.JSON(http.StatusOK, result)
