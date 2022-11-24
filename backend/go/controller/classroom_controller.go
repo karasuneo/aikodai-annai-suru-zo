@@ -7,7 +7,7 @@ import (
 	"github.com/karasuneo/aikodai-annai-suru-zo/go/model"
 )
 
-func GetRoomNameResult(c *gin.Context) {
+func GetSearchRoomNameResult(c *gin.Context) {
 	var input Input
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

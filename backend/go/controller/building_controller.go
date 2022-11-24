@@ -22,6 +22,6 @@ func GetSearchBuildingResult(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	result := model.GetBuildingBuildingName(input.BuildingName)
+	result := model.GetBuildingName(input.BuildingName)
 	c.JSON(http.StatusOK, result)
 }
