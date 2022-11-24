@@ -20,6 +20,29 @@ func CombineBuildingWithClassRoom(building []*Building) []*Building {
 	return building
 }
 
+// ClassRoomテーブルとBuildingテーブルを結合
+func CombineClassRoomWithBuilding(class_room []*ClassRoom) []*Building {
+	//構造体の定義
+	result := []*Building{}
+	building := []*Building{}
+
+	db.Find(&building)
+
+	//BuilgingのClassRoomに構造体を入れる
+	for _, b := range building {
+		for _, c := range class_room {
+			if b.BuildingName == c.BuildingName {
+				db.Where("building_name LIKE ?", "%"+c.BuildingName+"%").Find(&building)
+				result = append(result, building...)
+				for _, r := range result {
+					r.ClassRooms = append(r.ClassRooms, *c)
+				}
+			}
+		}
+	}
+	return result
+}
+
 // ClassRoomテーブルとSubjectテーブルを結合
 func CombineClassRoomWithSubject() []*ClassRoom {
 	//構造体の定義
