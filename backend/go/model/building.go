@@ -20,13 +20,4 @@ func GetBuildingName(building_name string) []*Building {
 	db.Where("building_name LIKE ?", "%"+building_name+"%").Find(&result)
 	result = CombineBuildingWithClassRoom(result)
 	return result
-	// result := CombineBuildingWithClassRoom()
-	// 	for _, r := range result {
-	// 		if r.BuildingName != building_name {
-	// 			r = result[len(result)-1]
-	// 		}
-	// 	}
-	
-
-	// return result
 }

@@ -4,7 +4,7 @@
 POST http://localhost:8080/building HTTP/1.1
 content-type: application/json
 
-{"name":"新"}
+{"name":"10号館大講義室"}
 
 # POST http://localhost:8080/classroom HTTP/1.1
 # content-type: application/json
