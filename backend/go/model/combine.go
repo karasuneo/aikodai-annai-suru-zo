@@ -2,30 +2,10 @@ package model
 
 import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
 
-var db = lib.NewSQLHandler().DB
+var db = lib.SqlConnect()
 
 // BuildingテーブルとClassRoomテーブルを結合
-func CombineBuildingWithClassRoom() []*Building {
-	//構造体の定義
-	building := []*Building{}
-	class_room := CombineClassRoomWithSubject()
-
-	//DBのデータを構造体の配列に格納
-	db.Find(&building)
-
-	//BuilgingのClassRoomに構造体を入れる
-	for _, b := range building {
-		for _, c := range class_room {
-			if b.BuildingName == c.BuildingName {
-				b.ClassRooms = append(b.ClassRooms, *c)
-			}
-		}
-	}
-	return building
-}
-
-// ClassRoomテーブルとSubjectテーブルを結合
-func CombineClassRoomWithSubject() []*ClassRoom {
+func CombineBuildingWithClassRoom(building []*Building) []*Building {
 	//構造体の定義
 	class_room := []*ClassRoom{}
 	subject := []*Subject{}
@@ -43,5 +23,48 @@ func CombineClassRoomWithSubject() []*ClassRoom {
 		}
 	}
 
-	return class_room
+	//BuilgingのClassRoomに構造体を入れる
+	for _, b := range building {
+		for _, c := range class_room {
+			if b.BuildingName == c.BuildingName {
+				b.ClassRooms = append(b.ClassRooms, *c)
+			}
+		}
+	}
+	return building
+}
+
+// ClassRoomテーブルとBuildingテーブルを結合
+func CombineClassRoomWithBuilding(class_room []*ClassRoom) []*Building {
+	//構造体の定義
+	result := []*Building{}
+	building := []*Building{}
+	subject := []*Subject{}
+
+	//DBのデータを構造体の配列に格納
+	db.Find(&building)
+	db.Find(&subject)
+
+	//ClassRoomのSubjectに構造体を入れる
+	for _, c := range class_room {
+		for _, s := range subject {
+			if c.RoomNumber == s.ClassRoom {
+				c.Subjects = append(c.Subjects, *s)
+			}
+		}
+	}
+
+	//BuilgingのClassRoomに構造体を入れる
+	for _, b := range building {
+		for _, c := range class_room {
+			if b.BuildingName == c.BuildingName {
+				db.Where("building_name LIKE ?", "%"+c.BuildingName+"%").Find(&building)
+				result = append(result, building...)
+				for _, r := range result {
+					r.ClassRooms = append(r.ClassRooms, *c)
+				}
+			}
+		}
+	}
+	return result
 }

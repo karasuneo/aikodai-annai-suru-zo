@@ -9,21 +9,12 @@ import (
 	"gorm.io/gorm"
 )
 
-var dbConn *SQLHandler
-
-// SQLHandler ...
-type SQLHandler struct {
-	DB  *gorm.DB
-	Err error
-}
-
-func NewSQLHandler() *SQLHandler {
+func SqlConnect() (database *gorm.DB) {
 	USER := os.Getenv("MYSQL_USER")
 	PASS := os.Getenv("MYSQL_PASSWORD")
 	PROTOCOL := "tcp(koukaten2022_DB:3306)"
 	DBNAME := os.Getenv("MYSQL_DATABASE_DS")
-	fmt.Println(PASS)
-
+	
 	dsn := USER + ":" + PASS + "@" + PROTOCOL + "/" + DBNAME + "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 	dialector := mysql.Open(dsn)
 
@@ -35,10 +26,7 @@ func NewSQLHandler() *SQLHandler {
 	}
 	fmt.Println("db connected!!")
 
-	sqlHandler := new(SQLHandler)
-	sqlHandler.DB = db
-
-	return sqlHandler
+	return db
 }
 
 func connect(db *gorm.DB, dialector gorm.Dialector, count uint) {

@@ -11,9 +11,6 @@ services:
       - ./Docker/go/.env
     volumes:
       - ./go:/go/src/app # マウントディレクトリ
-      # - type: bind
-      #   source: ./go
-      #   target: /go/app
     ports:
       - 8080:8080
     depends_on:
