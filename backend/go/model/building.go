@@ -9,21 +9,24 @@ type Building struct {
 }
 
 // Buildingの全てのデータを取得
-func GetBuildingAll() []*Building {
-	result := CombineBuildingWithClassRoom()
-	return result
-}
+// func GetBuildingAll() []*Building {
+// 	result := CombineBuildingWithClassRoom()
+// 	return result
+// }
 
 // 建物名を検索してデータを取得
 func GetBuildingName(building_name string) []*Building {
-	result := CombineBuildingWithClassRoom()
-	
-		for _, r := range result {
-			if r.BuildingName != building_name {
-				r = result[len(result)-1]
-			}
-		}
+	result := []*Building{}
+	db.Where("building_name LIKE ?", "%"+building_name+"%").Find(&result)
+	result = CombineBuildingWithClassRoom(result)
+	return result
+	// result := CombineBuildingWithClassRoom()
+	// 	for _, r := range result {
+	// 		if r.BuildingName != building_name {
+	// 			r = result[len(result)-1]
+	// 		}
+	// 	}
 	
 
-	return result
+	// return result
 }

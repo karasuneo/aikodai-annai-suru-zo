@@ -5,13 +5,9 @@ import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
 var db = lib.SqlConnect()
 
 // BuildingテーブルとClassRoomテーブルを結合
-func CombineBuildingWithClassRoom() []*Building {
+func CombineBuildingWithClassRoom(building []*Building) []*Building {
 	//構造体の定義
-	building := []*Building{}
 	class_room := CombineClassRoomWithSubject()
-
-	//DBのデータを構造体の配列に格納
-	db.Find(&building)
 
 	//BuilgingのClassRoomに構造体を入れる
 	for _, b := range building {

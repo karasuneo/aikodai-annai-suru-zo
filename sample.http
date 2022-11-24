@@ -1,17 +1,17 @@
 
 # GET http://localhost:8080/
 
-# POST http://localhost:8080/building HTTP/1.1
-# content-type: application/json
+POST http://localhost:8080/building HTTP/1.1
+content-type: application/json
 
-# {"name":"言語文化研究室"}
+{"name":"新"}
 
 # POST http://localhost:8080/classroom HTTP/1.1
 # content-type: application/json
 
 # {"name":"プレゼンテーションルーム2"}
 
-POST http://localhost:8080/subject HTTP/1.1
-content-type: application/json
+# POST http://localhost:8080/subject HTTP/1.1
+# content-type: application/json
 
-{ "name":"人工知能" }
+# { "name":"人工知能" }

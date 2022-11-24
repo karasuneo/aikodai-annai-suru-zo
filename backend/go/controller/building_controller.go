@@ -11,10 +11,10 @@ type Input struct {
 	BuildingName string `json:"name"`
 }
 
-func GetAll(c *gin.Context) {
-	result := model.GetBuildingAll()
-	c.JSON(http.StatusOK, result)
-}
+// func GetAll(c *gin.Context) {
+// 	result := model.CombineBuildingWithClassRoom("バイオ実験棟")
+// 	c.JSON(http.StatusOK, result)
+// }
 
 func GetSearchBuildingResult(c *gin.Context) {
 	var input Input
