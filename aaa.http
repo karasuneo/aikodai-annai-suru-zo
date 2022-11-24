@@ -1,8 +1,0 @@
-GET http://localhost:8080/b
-
-
-# POST http://localhost:8080/buildingname HTTP/1.1
-# content-type: application/json
-# "Input" {
-# "buildingname":"バイオ"
-# }     

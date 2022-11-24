@@ -17,13 +17,13 @@ func GetBuildingAll() []*Building {
 // 建物名を検索してデータを取得
 func GetBuildingName(building_name string) []*Building {
 	result := CombineBuildingWithClassRoom()
-	if building_name != "" {
+	
 		for _, r := range result {
 			if r.BuildingName != building_name {
 				r = result[len(result)-1]
 			}
 		}
-	}
+	
 
 	return result
 }
