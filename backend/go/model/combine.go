@@ -7,7 +7,21 @@ var db = lib.SqlConnect()
 // BuildingテーブルとClassRoomテーブルを結合
 func CombineBuildingWithClassRoom(building []*Building) []*Building {
 	//構造体の定義
-	class_room := CombineClassRoomWithSubject()
+	class_room := []*ClassRoom{}
+	subject := []*Subject{}
+
+	//DBのデータを構造体の配列に格納
+	db.Find(&class_room)
+	db.Find(&subject)
+
+	//ClassRoomのSubjectに構造体を入れる
+	for _, c := range class_room {
+		for _, s := range subject {
+			if c.RoomNumber == s.ClassRoom {
+				c.Subjects = append(c.Subjects, *s)
+			}
+		}
+	}
 
 	//BuilgingのClassRoomに構造体を入れる
 	for _, b := range building {
@@ -25,8 +39,20 @@ func CombineClassRoomWithBuilding(class_room []*ClassRoom) []*Building {
 	//構造体の定義
 	result := []*Building{}
 	building := []*Building{}
+	subject := []*Subject{}
 
+	//DBのデータを構造体の配列に格納
 	db.Find(&building)
+	db.Find(&subject)
+
+	//ClassRoomのSubjectに構造体を入れる
+	for _, c := range class_room {
+		for _, s := range subject {
+			if c.RoomNumber == s.ClassRoom {
+				c.Subjects = append(c.Subjects, *s)
+			}
+		}
+	}
 
 	//BuilgingのClassRoomに構造体を入れる
 	for _, b := range building {
@@ -41,25 +67,4 @@ func CombineClassRoomWithBuilding(class_room []*ClassRoom) []*Building {
 		}
 	}
 	return result
-}
-
-// ClassRoomテーブルとSubjectテーブルを結合
-func CombineClassRoomWithSubject() []*ClassRoom {
-	//構造体の定義
-	class_room := []*ClassRoom{}
-	subject := []*Subject{}
-
-	//DBのデータを構造体の配列に格納
-	db.Find(&class_room)
-	db.Find(&subject)
-
-	//ClassRoomのSubjectに構造体を入れる
-	for _, c := range class_room {
-		for _, s := range subject {
-			if c.RoomNumber == s.ClassRoom {
-				c.Subjects = append(c.Subjects, *s)
-			}
-		}
-	}
-	return class_room
 }
