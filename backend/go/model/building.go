@@ -8,12 +8,6 @@ type Building struct {
 	Longitude    string
 }
 
-// Buildingの全てのデータを取得
-// func GetBuildingAll() []*Building {
-// 	result := CombineBuildingWithClassRoom()
-// 	return result
-// }
-
 // 建物名を検索してデータを取得
 func GetBuildingName(building_name string) []*Building {
 	result := []*Building{}
