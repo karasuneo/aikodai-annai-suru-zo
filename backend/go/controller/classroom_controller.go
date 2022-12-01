@@ -13,7 +13,7 @@ func GetSearchRoomNameResult(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	result := model.GetRoomName(input.BuildingName)
+	result := model.GetRoomName(input.SerachWord)
 	c.JSON(http.StatusOK, result)
 }
 

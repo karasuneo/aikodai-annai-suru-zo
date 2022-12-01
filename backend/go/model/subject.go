@@ -15,17 +15,11 @@ type Subject struct {
 	Credit         int
 }
 
-// Subjectの全てのデータを取得
-func GetSubjectAll() []*Subject {
-	result := []*Subject{}
-	db.Find(&result)
-	return result
-}
-
 // 科目名を検索してデータを取得
-func GetSubjectName(subject_name string) []*Subject {
-	result := []*Subject{}
-	db.Where("subject_name LIKE ?", "%"+subject_name+"%").Find(&result)
+func GetSubjectName(subject_name string) []*Building {
+	subject := []*Subject{}
+	db.Where("subject_name LIKE ?", "%"+subject_name+"%").Find(&subject)
+	result := CombineSubject(subject)
 	return result
 }
 

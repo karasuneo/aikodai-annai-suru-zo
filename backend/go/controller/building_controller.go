@@ -8,13 +8,8 @@ import (
 )
 
 type Input struct {
-	BuildingName string `json:"name"`
+	SerachWord string `json:"name"`
 }
-
-// func GetAll(c *gin.Context) {
-// 	result := model.CombineBuildingWithClassRoom("バイオ実験棟")
-// 	c.JSON(http.StatusOK, result)
-// }
 
 func GetSearchBuildingResult(c *gin.Context) {
 	var input Input
@@ -22,6 +17,6 @@ func GetSearchBuildingResult(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	result := model.GetBuildingName(input.BuildingName)
+	result := model.GetBuildingName(input.SerachWord)
 	c.JSON(http.StatusOK, result)
 }

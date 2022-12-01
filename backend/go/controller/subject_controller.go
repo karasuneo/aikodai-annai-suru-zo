@@ -13,6 +13,6 @@ func GetSearchSubjectNameResult(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	result := model.GetSubjectName(input.BuildingName)
+	result := model.GetSubjectName(input.SerachWord)
 	c.JSON(http.StatusOK, result)
 }
