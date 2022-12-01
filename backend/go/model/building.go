@@ -12,6 +12,6 @@ type Building struct {
 func GetBuildingName(building_name string) []*Building {
 	result := []*Building{}
 	db.Where("building_name LIKE ?", "%"+building_name+"%").Find(&result)
-	result = CombineBuildingWithClassRoom(result)
+	result = CombineBuilding(result)
 	return result
 }
