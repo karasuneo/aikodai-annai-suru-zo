@@ -1,4 +1,4 @@
-
+# APIサーバーのテスト用コマンド
 GET http://localhost:8080/
 
 POST http://localhost:8080/building HTTP/1.1
