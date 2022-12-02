@@ -1,6 +1,9 @@
 package model
 
-import "github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
+import (
+	"github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
+	"reflect"
+)
 
 var db = lib.SqlConnect()
 
@@ -73,11 +76,12 @@ func CombineClassRoom(class_room []*ClassRoom) []*Building {
 func CombineSubject(subject []*Subject) []*Building {
 	//構造体の定義
 	result := []*Building{}
+	building := []*Building{}
 	class_room := []*ClassRoom{}
 	class_room_tmp := []*ClassRoom{}
 
 	//DBのデータを構造体の配列に格納
-	db.Find(&result)
+	db.Find(&building)
 	db.Find(&class_room_tmp)
 
 	//ClassRoomのSubjectに構造体を入れる
@@ -94,12 +98,19 @@ func CombineSubject(subject []*Subject) []*Building {
 	}
 
 	//BuilgingのClassRoomに構造体を入れる
-	for _, r := range result {
+	for _, b := range building {
 		for _, c := range class_room {
-			if r.BuildingName == c.BuildingName {
-				r.ClassRooms = append(r.ClassRooms, *c)
+			if b.BuildingName == c.BuildingName {
+				b.ClassRooms = append(b.ClassRooms, *c)
 			}
 		}
 	}
+
+	for _, b := range building {
+		if (b.ClassRooms != nil) || !reflect.ValueOf(b.ClassRooms).IsNil() {
+			result = append(result, *&b)
+		}
+	}
+
 	return result
 }
