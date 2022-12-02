@@ -36,10 +36,12 @@ services:
       context: ./docker/neo4j
       dockerfile: Dockerfile
     restart: always
-    extra_hosts: 
-      - localhost:172.20.0.1 
+    extra_hosts:
+      - localhost:172.21.0.1
     ports:
       - 57474:7474
       - 57687:7687
     volumes:
       - ./docker/neo4j/volumes/neo4j/data:/data
+    environment:
+      - NEO4J_AUTH=neo4j/admin
