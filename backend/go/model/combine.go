@@ -79,27 +79,71 @@ func CombineSubject(subject []*Subject) []*Building {
 	building := []*Building{}
 
 	class_room := []*ClassRoom{}
-	class_room_tmp := []*ClassRoom{}
+	class_room_tmp1 := []*ClassRoom{}
 	class_room_tmp2 := []*ClassRoom{}
+	class_room_tmp3 := []*ClassRoom{}
+	// class_room_tmp4 := []*ClassRoom{}
 
 	//DBのデータを構造体の配列に格納
 	db.Find(&building)
-	db.Find(&class_room_tmp)
+	db.Find(&class_room_tmp1)
 
 	//ClassRoomのSubjectに構造体を入れる
-	for _, ct := range class_room_tmp {
+	for _, ct := range class_room_tmp1 {
 		for _, s := range subject {
 			if ct.RoomNumber == s.ClassRoom {
-				db.Where("room_number LIKE ?", "%"+s.ClassRoom+"%").Find(&class_room_tmp2)
-				class_room = append(class_room, class_room_tmp2...)
-				for _, c := range class_room {
-					if c.RoomNumber == s.ClassRoom {
-						c.Subjects = append(c.Subjects, *s)
+				db.Where("room_number LIKE ?", ct.RoomNumber).Find(&class_room_tmp2)
+				// for _, ct2 := range class_room_tmp2 {
+				// 	println(ct2.RoomNumber)
+
+				// }
+
+				class_room_tmp3 = append(class_room_tmp3, class_room_tmp2...)
+				for _, ct3 := range class_room_tmp3 {
+					if ct3.RoomNumber == s.ClassRoom {
+						ct3.Subjects = append(ct3.Subjects, *s)
 					}
 				}
 			}
 		}
+
+		
 	}
+
+	// arr := []*ClassRoom{}
+	m := make(map[string]bool)
+	
+	for _, ct3 := range class_room_tmp3 {
+		if !m[ct3.RoomNumber] {
+			m[ct3.RoomNumber] = true
+			class_room = append(class_room, ct3)
+		}
+	}
+
+	// for _, m_ele := range m {
+	// 	println(m_ele)
+	// }
+
+	// for _, u := range uniq {
+	// 	println(u.RoomNumber)
+	// }
+
+
+	// var hantei bool = true
+	// class_room_tmp4 = append(class_room_tmp4, class_room_tmp3...)
+
+	// for _, ct3 := range class_room_tmp3 {
+	// 	for _, ct4 := range class_room_tmp4 {
+	// 		if ct3.RoomNumber == ct4.RoomNumber {
+	// 			hantei = false
+	// 			break
+	// 		}
+	// 		if hantei == true {
+	// 			class_room = append(class_room, ct3)
+	// 		}
+	// 	}
+	// 	hantei = true
+	// }
 
 	//BuilgingのClassRoomに構造体を入れる
 	for _, b := range building {
