@@ -39,11 +39,15 @@ func CombineBuilding(building []*Building) []*Building {
 }
 
 // ClassRoomテーブル検索の時テーブルを結合
-func CombineClassRoom(class_room []*ClassRoom) []*Building {
+func CombineRoomNumber(class_room []*ClassRoom) []*Building {
 	//構造体の定義
 	result := []*Building{}
 	building := []*Building{}
+	// building_tmp := []*Building{}
+	class_room_tmp := []*ClassRoom{}
 	subject := []*Subject{}
+
+	class_room_tmp = append(class_room_tmp, class_room...)
 
 	//DBのデータを構造体の配列に格納
 	db.Find(&building)
@@ -58,7 +62,10 @@ func CombineClassRoom(class_room []*ClassRoom) []*Building {
 		}
 	}
 
-	//BuilgingのClassRoomに構造体を入れる
+	for _, c := range class_room {
+		print(c.RoomNumber + "sa")
+	}
+
 	for _, b := range building {
 		for _, c := range class_room {
 			if b.BuildingName == c.BuildingName {
@@ -69,6 +76,13 @@ func CombineClassRoom(class_room []*ClassRoom) []*Building {
 			}
 		}
 	}
+
+	
+				// for _, r := range result {
+				// 	println(r.BuildingName)
+					
+				// }
+
 	return result
 }
 
@@ -77,6 +91,7 @@ func CombineSubject(subject []*Subject) []*Building {
 	//構造体の定義
 	result := []*Building{}
 	building := []*Building{}
+	
 	class_room := []*ClassRoom{}
 	class_room_tmp := []*ClassRoom{}
 
