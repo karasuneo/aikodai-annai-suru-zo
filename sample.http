@@ -6,12 +6,12 @@
 
 # {"name":"10号館大講義"}
 
-POST http://localhost:8080/classroom HTTP/1.1
-content-type: application/json
-
-{"name":"G2210"}
-
-# POST http://localhost:8080/subject HTTP/1.1
+# POST http://localhost:8080/classroom HTTP/1.1
 # content-type: application/json
 
-# { "name":"人工知能" }
+# {"name":"G2210"}
+
+POST http://localhost:8080/subject HTTP/1.1
+content-type: application/json
+
+{ "name":"人工知能" }
