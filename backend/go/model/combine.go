@@ -45,8 +45,6 @@ func CombineRoomNumber(class_room []*ClassRoom) []*Building {
 	building := []*Building{}
 	subject := []*Subject{}
 
-	
-
 	//DBのデータを構造体の配列に格納
 	db.Find(&building)
 	db.Find(&subject)
@@ -79,9 +77,10 @@ func CombineSubject(subject []*Subject) []*Building {
 	//構造体の定義
 	result := []*Building{}
 	building := []*Building{}
-	
+
 	class_room := []*ClassRoom{}
 	class_room_tmp := []*ClassRoom{}
+	class_room_tmp2 := []*ClassRoom{}
 
 	//DBのデータを構造体の配列に格納
 	db.Find(&building)
@@ -91,10 +90,12 @@ func CombineSubject(subject []*Subject) []*Building {
 	for _, ct := range class_room_tmp {
 		for _, s := range subject {
 			if ct.RoomNumber == s.ClassRoom {
-				db.Where("room_number LIKE ?", "%"+s.ClassRoom+"%").Find(&class_room_tmp)
-				class_room = append(class_room, class_room_tmp...)
+				db.Where("room_number LIKE ?", "%"+s.ClassRoom+"%").Find(&class_room_tmp2)
+				class_room = append(class_room, class_room_tmp2...)
 				for _, c := range class_room {
-					c.Subjects = append(c.Subjects, *s)
+					if c.RoomNumber == s.ClassRoom {
+						c.Subjects = append(c.Subjects, *s)
+					}
 				}
 			}
 		}
