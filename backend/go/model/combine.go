@@ -82,7 +82,6 @@ func CombineSubject(subject []*Subject) []*Building {
 	class_room_tmp2 := []*ClassRoom{}
 	class_room_tmp3 := []*ClassRoom{}
 
-
 	//DBのデータを構造体の配列に格納
 	db.Find(&building)
 	db.Find(&class_room_tmp1)
