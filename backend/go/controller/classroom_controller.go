@@ -8,12 +8,7 @@ import (
 )
 
 func GetSearchRoomNameResult(c *gin.Context) {
-	var input Input
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	result := model.GetRoomName(input.SerachWord)
+	rn := c.Query("rn")
+	result := model.GetRoomName(rn)
 	c.JSON(http.StatusOK, result)
 }
-
