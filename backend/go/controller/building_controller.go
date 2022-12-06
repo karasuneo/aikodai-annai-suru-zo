@@ -7,16 +7,8 @@ import (
 	"github.com/karasuneo/aikodai-annai-suru-zo/go/model"
 )
 
-type Input struct {
-	SerachWord string `json:"name"`
-}
-
 func GetSearchBuildingResult(c *gin.Context) {
-	var input Input
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	result := model.GetBuildingName(input.SerachWord)
+	bn := c.Query("bn")
+	result := model.GetBuildingName(bn)
 	c.JSON(http.StatusOK, result)
 }

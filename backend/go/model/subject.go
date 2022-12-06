@@ -18,8 +18,15 @@ type Subject struct {
 // 科目名を検索してデータを取得
 func GetSubjectName(subject_name string) []*Building {
 	subject := []*Subject{}
+	result := []*Building{}
+
+	// subject_nameが空文字だった時
+	if subject_name == "" {
+		return result
+	}
+
 	db.Where("subject_name LIKE ?", "%"+subject_name+"%").Find(&subject)
-	result := CombineSubject(subject)
+	result = CombineSubject(subject)
 	return result
 }
 

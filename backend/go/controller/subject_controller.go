@@ -8,11 +8,7 @@ import (
 )
 
 func GetSearchSubjectNameResult(c *gin.Context) {
-	var input Input
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	result := model.GetSubjectName(input.SerachWord)
+	sn := c.Query("sn")
+	result := model.GetSubjectName(sn)
 	c.JSON(http.StatusOK, result)
 }

@@ -77,12 +77,10 @@ func CombineSubject(subject []*Subject) []*Building {
 	//構造体の定義
 	result := []*Building{}
 	building := []*Building{}
-
 	class_room := []*ClassRoom{}
 	class_room_tmp1 := []*ClassRoom{}
 	class_room_tmp2 := []*ClassRoom{}
 	class_room_tmp3 := []*ClassRoom{}
-	// class_room_tmp4 := []*ClassRoom{}
 
 	//DBのデータを構造体の配列に格納
 	db.Find(&building)
@@ -93,11 +91,6 @@ func CombineSubject(subject []*Subject) []*Building {
 		for _, s := range subject {
 			if ct.RoomNumber == s.ClassRoom {
 				db.Where("room_number LIKE ?", ct.RoomNumber).Find(&class_room_tmp2)
-				// for _, ct2 := range class_room_tmp2 {
-				// 	println(ct2.RoomNumber)
-
-				// }
-
 				class_room_tmp3 = append(class_room_tmp3, class_room_tmp2...)
 				for _, ct3 := range class_room_tmp3 {
 					if ct3.RoomNumber == s.ClassRoom {
@@ -107,43 +100,16 @@ func CombineSubject(subject []*Subject) []*Building {
 			}
 		}
 
-		
 	}
 
-	// arr := []*ClassRoom{}
+	// ClassRoomをユニークにするためのmapの定義
 	m := make(map[string]bool)
-	
 	for _, ct3 := range class_room_tmp3 {
 		if !m[ct3.RoomNumber] {
 			m[ct3.RoomNumber] = true
 			class_room = append(class_room, ct3)
 		}
 	}
-
-	// for _, m_ele := range m {
-	// 	println(m_ele)
-	// }
-
-	// for _, u := range uniq {
-	// 	println(u.RoomNumber)
-	// }
-
-
-	// var hantei bool = true
-	// class_room_tmp4 = append(class_room_tmp4, class_room_tmp3...)
-
-	// for _, ct3 := range class_room_tmp3 {
-	// 	for _, ct4 := range class_room_tmp4 {
-	// 		if ct3.RoomNumber == ct4.RoomNumber {
-	// 			hantei = false
-	// 			break
-	// 		}
-	// 		if hantei == true {
-	// 			class_room = append(class_room, ct3)
-	// 		}
-	// 	}
-	// 	hantei = true
-	// }
 
 	//BuilgingのClassRoomに構造体を入れる
 	for _, b := range building {
@@ -154,6 +120,7 @@ func CombineSubject(subject []*Subject) []*Building {
 		}
 	}
 
+	// ClassRoomに何も入っていないスライスは返さないようにする
 	for _, b := range building {
 		if (b.ClassRooms != nil) || !reflect.ValueOf(b.ClassRooms).IsNil() {
 			result = append(result, *&b)

@@ -1,5 +1,11 @@
 # APIサーバーのテスト用コマンド
-# GET http://localhost:8080/
+
+# GET http://localhost:8080/building?bn=10号館大講義
+
+# GET http://localhost:8080/classroom?rn=G2210
+
+# GET http://localhost:8080/subject?sn=mk
+
 
 # POST http://localhost:8080/building HTTP/1.1
 # content-type: application/json
@@ -11,7 +17,7 @@
 
 # {"name":"G2210"}
 
-POST http://localhost:8080/subject HTTP/1.1
-content-type: application/json
+# POST http://localhost:8080/subject HTTP/1.1
+# content-type: application/json
 
-{ "name":"演習" }
+# { "name":"演習" }

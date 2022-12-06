@@ -7,8 +7,8 @@ import (
 
 func Init() {
 	r := gin.Default()
-	r.POST("/building", controller.GetSearchBuildingResult)
-	r.POST("/classroom", controller.GetSearchRoomNameResult)
-	r.POST("/subject", controller.GetSearchSubjectNameResult)
+	r.GET("/building", controller.GetSearchBuildingResult)
+	r.GET("/classroom", controller.GetSearchRoomNameResult)
+	r.GET("/subject", controller.GetSearchSubjectNameResult)
 	r.Run()
 }
