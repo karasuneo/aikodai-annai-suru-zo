@@ -17,9 +17,8 @@ echo "delete database finished."
 # CSVデータのインポート
 echo "Start the data import process"
 neo4j-admin import \
-  --nodes=/import/movies.csv \
-  --nodes=/import/actors.csv \
-  --relationships=/import/roles.csv
+  --nodes=/import/points.csv \
+  --relationships=/import/route.csv
 echo "Complete the data import process"
 
 # import処理の完了フラグファイルの作成
