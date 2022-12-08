@@ -49,3 +49,4 @@ services:
       - ./docker/neo4j/volumes/script:/script
     environment:
       - NEO4J_AUTH=neo4j/admin
+      - EXTENSION_SCRIPT=/script/import_data.sh
