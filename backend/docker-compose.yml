@@ -42,6 +42,11 @@ services:
       - 57474:7474
       - 57687:7687
     volumes:
-      - ./docker/neo4j/volumes/neo4j/data:/data
+      - ./docker/neo4j/volumes/data:/data
+      - ./docker/neo4j/volumes/logs:/logs
+      - ./docker/neo4j/volumes/conf:/conf
+      - ./docker/neo4j/volumes/import:/import
+      - ./docker/neo4j/volumes/script:/script
     environment:
       - NEO4J_AUTH=neo4j/admin
+      - EXTENSION_SCRIPT=/script/import_data.sh
