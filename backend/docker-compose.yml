@@ -35,9 +35,9 @@ services:
     build:
       context: ./docker/neo4j
       dockerfile: Dockerfile
-    # restart: always
-    # extra_hosts:
-    #   - localhost:172.21.0.1
+    restart: always
+    extra_hosts:
+      - localhost:172.21.0.1
     ports:
       - 57474:7474
       - 57687:7687
