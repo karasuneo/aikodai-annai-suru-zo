@@ -4,7 +4,7 @@ import React from "react";
 function MapPage() {
   const Map = React.useMemo(
     () =>
-      dynamic(() => import("../components/map"), {
+      dynamic(() => import("../components/Map"), {
         loading: () => <p>A map is loading</p>,
         ssr: false,
       }),
