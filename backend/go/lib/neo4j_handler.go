@@ -1,22 +1,14 @@
 package lib
 
 import (
-	"fmt"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/neo4j/neo4j-go-driver/neo4j"
 )
 
 func Start_up() {
-
-	err := godotenv.Load(".env")
-	if err != nil {
-		fmt.Printf("can't read: %v", err)
-	}
-
 	uri := os.Getenv("NEO4J_URI")
-	username := os.Getenv("NEO4J_USERNAME")
+	username := os.Getenv("NEO4J_USER")
 	password := os.Getenv("NEO4J_PASSWORD")
 
 	configForNeo4j4 := func(conf *neo4j.Config) { conf.Encrypted = false }
