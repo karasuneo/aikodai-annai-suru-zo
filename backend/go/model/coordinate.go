@@ -3,7 +3,7 @@ package model
 import (
 	
 	
-	"os"
+	
 
 	"github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
 	
@@ -16,17 +16,18 @@ type Coordinate struct {
 
 func GetCoordinate(from, to string) []*Coordinate {
 
-	uri := os.Getenv("NEO4J_URI")
-	username := os.Getenv("NEO4J_USERNAME")
-	pass := os.Getenv("NEO4J_PASS")
+	// uri := os.Getenv("NEO4J_URI")
+	// username := os.Getenv("NEO4J_USERNAME")
+	// pass := os.Getenv("NEO4J_PASS")
 
 
 	//出発地点から目的地までの各ポイントの座標を取得
-	lat, lng, err := lib.GetCoordinate(uri, username, pass, from, to)
+	lat, lng, err := lib.GetCoordinate("neo4j://192.168.128.1:57687", "neo4j", "admin", from, to)
 	if err != nil {
 		panic(err)
 	}
-	//構造体の作成
+	
+	// 緯度、経度を構造体に格納
 	coordinate := []*Coordinate{}
 	for i := 0; i < len(lat); i++ {
 		coordinate_tmp := Coordinate{}

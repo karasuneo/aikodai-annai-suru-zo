@@ -19,6 +19,8 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 	// Cypherで取得してきた緯度、経度を格納する配列
 	var lat []float64
 	var lng []float64
+
+	// Cypherで最短経路を検索するクエリ
 	cypher := fmt.Sprintf(`MATCH (from:Building {point_name: "%s"}), (to:Building {point_name: "%s"}), path=allShortestPaths ((from)-[distance:Distance*]->(to))
 	WITH
 	[building in nodes(path) | building.lat] as lat,
@@ -28,7 +30,6 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 	ORDER BY 所要時間
 	LIMIT 10;
 	`, from, to)
-	fmt.Println(cypher)
 
 	// Cypherで最短経路を検索
 	res, err := session.ReadTransaction(func(transaction neo4j.Transaction) (interface{}, error) {

@@ -8,8 +8,11 @@ import (
 )
 
 func GetSearchCoordinateResult(c *gin.Context) {
-	from := c.Query("from")
+	fr := c.Query("fr")
 	to := c.Query("to")
-	result := model.GetCoordinate(from, to)
+	print(fr)
+	print(to)
+	result := model.GetCoordinate(fr, to)
+	print(result)
 	c.JSON(http.StatusOK, result)
 }
