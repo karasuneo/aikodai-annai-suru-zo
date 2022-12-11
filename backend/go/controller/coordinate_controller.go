@@ -10,6 +10,6 @@ import (
 func GetSearchCoordinateResult(c *gin.Context) {
 	from := c.Query("from")
 	to := c.Query("to")
-	result := model.GetRoomName(rn)
+	result := model.GetCoordinate(from, to)
 	c.JSON(http.StatusOK, result)
 }

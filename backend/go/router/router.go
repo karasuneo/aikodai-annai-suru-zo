@@ -10,5 +10,6 @@ func Init() {
 	r.GET("/building", controller.GetSearchBuildingResult)
 	r.GET("/classroom", controller.GetSearchRoomNameResult)
 	r.GET("/subject", controller.GetSearchSubjectNameResult)
+	r.GET("/coordinate", controller.GetSearchCoordinateResult)
 	r.Run()
 }
