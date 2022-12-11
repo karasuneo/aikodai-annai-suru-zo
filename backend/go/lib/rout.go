@@ -1,12 +1,9 @@
 package lib
 
 import (
-	"encoding/json"
-	"fmt"
-	"os"
-
-	"github.com/joho/godotenv"
-	// "github.com/neo4j/neo4j-go-driver/neo4j"
+	
+	
+	
 	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
 
@@ -85,39 +82,4 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 
 	println(res)
 	return lat, lng, nil
-}
-
-func Routing(from, to string) []byte {
-	err := godotenv.Load(".env")
-	if err != nil {
-		fmt.Printf("can't read: %v", err)
-	}
-
-	uri := os.Getenv("NEO4J_URI")
-	username := os.Getenv("NEO4J_USERNAME")
-	pass := os.Getenv("NEO4J_PASS")
-
-	//検索用のグラフを作成（起動時に一度のみ動作させる）
-	// err := start_up("bolt://localhost:57687", "neo4j", "admin")
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	//出発地点から目的地までの各ポイントの座標を取得
-	lat, lng, err := GetCoordinate(uri, username, pass, from, to)
-	if err != nil {
-		panic(err)
-	}
-	//構造体の作成
-	var co []Coordinate
-	for i := 0; i < len(lat); i++ {
-		co = append(co, Coordinate{lat[i], lng[i]})
-	}
-
-	// fmt.Println(lat)
-	// fmt.Println(lng)
-	// fmt.Println(co)
-	coordinate, _ := json.Marshal(co)
-	fmt.Println(string(coordinate))
-	return coordinate
 }
