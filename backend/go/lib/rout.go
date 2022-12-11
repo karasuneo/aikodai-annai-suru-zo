@@ -1,6 +1,8 @@
 package lib
 
 import (
+	"fmt"
+
 	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
 
@@ -23,28 +25,37 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 	var lng []float64
 
 	res, err := session.ReadTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
-
 		result, err := transaction.Run(
 			`
 			MATCH (from:Building {point_name: "10号館"}), (to:Building {point_name: "4号館"}), path=allShortestPaths ((from)-[distance:Distance*]->(to))
 			WITH
-			[distance in relationships(path) | distance.cost] as 経路,
-			[building in nodes(path) | building.lat] as 緯度,
-			[building in nodes(path) | building.lng] as 経度,
+			[building in nodes(path) | building.lat] as lat,
+			[building in nodes(path) | building.lng] as lng,
 			REDUCE(totalMinutes = 0, d in distance | totalMinutes + d.cost) as 所要時間
-			RETURN 経度, 緯度
+			RETURN lat, lng
 			ORDER BY 所要時間
 			LIMIT 10;
-			`, map[string]interface{}{
-				"from": from, "to": to,
-			})
+			`, nil)
 
 		if err != nil {
 			return nil, err
 		}
 
 		if result.Next() {
-			return result.Record().Values[0], nil
+			lat_value, found := result.Record().Get("lat")
+			if found {
+				lat_array := lat_value.([]interface{})
+				for i := 0; i < len(lat_array); i++ {
+					lat = append(lat, lat_array[i].(float64))
+				}
+			}
+			lng_value, found := result.Record().Get("lng")
+			if found {
+				lng_array := lng_value.([]interface{})
+				for i := 0; i < len(lng_array); i++ {
+					lng = append(lng, lng_array[i].(float64))
+				}
+			}
 		}
 
 		return nil, result.Err()
@@ -52,6 +63,8 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 	if err != nil {
 		return nil, nil, err
 	}
+	fmt.Println(lat)
+	fmt.Println(lng)
 
 	println(res)
 	return lat, lng, nil
