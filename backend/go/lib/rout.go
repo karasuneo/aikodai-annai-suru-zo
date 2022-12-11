@@ -1,9 +1,6 @@
 package lib
 
 import (
-	
-	
-	
 	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
 
@@ -25,11 +22,8 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 	var lat []float64
 	var lng []float64
 
-	
-
 	res, err := session.ReadTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
-		
-		
+
 		result, err := transaction.Run(
 			`
 			MATCH (from:Building {point_name: "10号館"}), (to:Building {point_name: "4号館"}), path=allShortestPaths ((from)-[distance:Distance*]->(to))
@@ -44,7 +38,7 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 			`, map[string]interface{}{
 				"from": from, "to": to,
 			})
-			
+
 		if err != nil {
 			return nil, err
 		}
@@ -54,27 +48,6 @@ func GetCoordinate(uri, username, password, from, to string) ([]float64, []float
 		}
 
 		return nil, result.Err()
-		// for result.Next() {
-		// 	value, found := result.Record().Get("lat")
-		// 	if found {
-		// 		fmt.Println(value)
-		// 		s := value.([]interface{})
-		// 		for i := 0; i < len(s); i++ {
-		// 			lat = append(lat, s[i].(float64))
-		// 		}
-		// 	}
-		// 	val, found := result.Record().Get("lng")
-		// 	if found {
-		// 		ss := val.([]interface{})
-		// 		for i := 0; i < len(ss); i++ {
-		// 			lng = append(lng, ss[i].(float64))
-		// 		}
-		// 	}
-		// }
-		// if err = result.Err(); err != nil {
-		// 	return nil, err
-		// }
-		// return "OK", nil
 	})
 	if err != nil {
 		return nil, nil, err
