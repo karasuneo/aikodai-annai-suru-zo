@@ -4,11 +4,9 @@ go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.8.1
-	github.com/joho/godotenv v1.4.0
-	github.com/neo4j/neo4j-go-driver v1.8.3
 	github.com/neo4j/neo4j-go-driver/v4 v4.4.4
 	gorm.io/driver/mysql v1.4.4
-	gorm.io/gorm v1.24.1
+	gorm.io/gorm v1.24.2
 )
 
 require (
