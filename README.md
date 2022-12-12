@@ -51,7 +51,17 @@ SHOW databases;
 
 <br />
 
-### neo4jコンテナに入る
+### neo4jコンテナに接続する方法
+<br />
+
+neo4jコンテナに入る
 ```
 docker exec -it koukaten2022_NEO4J /bin/bash
 ```
+
+コンテナに割り振られたIPアドレスを確認する
+```
+cat /etc/hosts | awk 'END{print $1}' | sed -e 's/[0-9]\+$/1/g'
+```
+
+neo4j_handler.go 15行目に確認したIPアドレスを書き換える
