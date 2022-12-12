@@ -10,5 +10,6 @@ import (
 func GetSearchRoomNameResult(c *gin.Context) {
 	rn := c.Query("rn")
 	result := model.GetRoomName(rn)
+	print(result)
 	c.JSON(http.StatusOK, result)
 }
