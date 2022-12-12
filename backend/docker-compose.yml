@@ -10,7 +10,7 @@ services:
     env_file:
       - ./Docker/go/.env
     volumes:
-      - ./go:/go/src/app # マウントディレクトリ
+      - ./go:/go/src/app
     ports:
       - 8080:8080
     depends_on:
