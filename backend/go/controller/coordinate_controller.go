@@ -4,15 +4,12 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/karasuneo/aikodai-annai-suru-zo/go/model"
+	"github.com/karasuneo/aikodai-annai-suru-zo/go/search"
 )
 
 func GetSearchCoordinateResult(c *gin.Context) {
 	fr := c.Query("fr")
 	to := c.Query("to")
-	print(fr)
-	print(to)
-	result := model.GetCoordinate(fr, to)
-	print(result)
+	result := search.GetCoordinate(fr, to)
 	c.JSON(http.StatusOK, result)
 }

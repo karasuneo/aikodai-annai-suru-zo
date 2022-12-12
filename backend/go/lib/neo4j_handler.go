@@ -1,17 +1,18 @@
 package lib
 
 import (
+	"os"
 	"fmt"
 	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
 
-func Neo4jConnect(uri, username, password, from, to string) ([]float64, []float64, error) {
+func Neo4jConnect(from, to string) ([]float64, []float64, error) {
 	// uri := os.Getenv("NEO4J_URI")
-	// username := os.Getenv("NEO4J_USERNAME")
-	// pass := os.Getenv("NEO4J_PASS")
-	
+	username := os.Getenv("NEO4J_USERNAME")
+	pass := os.Getenv("NEO4J_PASS")
+
 	// neo4jサーバーと接続
-	driver, err := neo4j.NewDriver(uri, neo4j.BasicAuth(username, password, ""))
+	driver, err := neo4j.NewDriver("neo4j://172.24.0.1:57687", neo4j.BasicAuth(username, pass, ""))
 	if err != nil {
 		return nil, nil, err
 	}
