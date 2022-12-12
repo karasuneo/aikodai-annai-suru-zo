@@ -1,4 +1,4 @@
-package model
+package search
 
 import (
 	"github.com/karasuneo/aikodai-annai-suru-zo/go/lib"
@@ -11,7 +11,7 @@ type Coordinate struct {
 
 func GetCoordinate(from, to string) []*Coordinate {
 	//出発地点から目的地までの各ポイントの座標を取得
-	lat, lng, err := lib.Neo4jConnect("neo4j://172.24.0.1:57687", "neo4j", "admin", from, to)
+	lat, lng, err := lib.Neo4jConnect(from, to)
 	if err != nil {
 		panic(err)
 	}
