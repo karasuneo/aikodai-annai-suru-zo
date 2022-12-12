@@ -5,7 +5,11 @@ import (
 	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
 
-func GetCoordinate(uri, username, password, from, to string) ([]float64, []float64, error) {
+func Neo4jConnect(uri, username, password, from, to string) ([]float64, []float64, error) {
+	// uri := os.Getenv("NEO4J_URI")
+	// username := os.Getenv("NEO4J_USERNAME")
+	// pass := os.Getenv("NEO4J_PASS")
+	
 	// neo4jサーバーと接続
 	driver, err := neo4j.NewDriver(uri, neo4j.BasicAuth(username, password, ""))
 	if err != nil {

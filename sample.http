@@ -6,7 +6,7 @@
 
 # GET http://localhost:8080/subject?sn=mk
 
-GET http://localhost:8080/coordinate?fr=10号館&to=4号館
+# GET http://localhost:8080/coordinate?fr=10号館&to=4号館
 
 
 # POST http://localhost:8080/building HTTP/1.1
