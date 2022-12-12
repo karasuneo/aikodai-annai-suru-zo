@@ -64,4 +64,7 @@ docker exec -it koukaten2022_NEO4J /bin/bash
 cat /etc/hosts | awk 'END{print $1}' | sed -e 's/[0-9]\+$/1/g'
 ```
 
-neo4j_handler.go 15行目に確認したIPアドレスを書き換える
+neo4j_handler.goの15行目に確認したIPアドレスを書き換える
+```
+driver, err := neo4j.NewDriver("neo4j://(ここにIPアドレスを入れる):57687", neo4j.BasicAuth(username, pass, ""))
+```
