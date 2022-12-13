@@ -1,3 +1,4 @@
+frontend/.env
 backend/go/tmp
 backend/Docker/neo4j/volumes/data
 backend/Docker/neo4j/volumes/conf
