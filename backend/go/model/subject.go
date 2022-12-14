@@ -20,9 +20,10 @@ type Subject struct {
 }
 
 // 科目名を検索してデータを取得
-func GetSubjectName(subject_name string) []*Building {
+func GetSubjectName(subject_name string) []*Responce {
+	building := []*Building{}
 	subject := []*Subject{}
-	result := []*Building{}
+	result := []*Responce{}
 
 	// subject_nameが空文字だった時
 	if subject_name == "" {
@@ -30,7 +31,8 @@ func GetSubjectName(subject_name string) []*Building {
 	}
 
 	db.Where("subject_name LIKE ?", "%"+subject_name+"%").Find(&subject)
-	result = CombineSubject(subject)
+	building = CombineSubject(subject)
+	result = PerseResponse(building)
 	return result
 }
 
@@ -91,8 +93,6 @@ func CombineSubject(subject []*Subject) []*Building {
 
 	return result
 }
-
-
 
 // 受講可能学年を検索してデータを取得
 func GetGrade(grade string) []*Subject {

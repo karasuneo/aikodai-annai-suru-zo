@@ -10,9 +10,10 @@ type ClassRoom struct {
 }
 
 // 教室名を検索してデータを取得
-func GetRoomName(room_name string) []*Building {
+func GetRoomName(room_name string) []*Responce {
+	building := []*Building{}
 	class_room := []*ClassRoom{}
-	result := []*Building{}
+	result := []*Responce{}
 
 	// room_nameが空文字だった時
 	if room_name == "" {
@@ -20,7 +21,8 @@ func GetRoomName(room_name string) []*Building {
 	}
 
 	db.Where("room_number LIKE ?", "%"+room_name+"%").Find(&class_room)
-	result = CombineRoomNumber(class_room)
+	building = CombineRoomNumber(class_room)
+	result = PerseResponse(building)
 	return result
 }
 
