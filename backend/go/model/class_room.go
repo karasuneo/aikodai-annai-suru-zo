@@ -23,3 +23,37 @@ func GetRoomName(room_name string) []*Building {
 	result = CombineRoomNumber(class_room)
 	return result
 }
+
+// ClassRoomテーブル検索の時テーブルを結合
+func CombineRoomNumber(class_room []*ClassRoom) []*Building {
+	//構造体の定義
+	result := []*Building{}
+	building := []*Building{}
+	subject := []*Subject{}
+
+	//DBのデータを構造体の配列に格納
+	db.Find(&building)
+	db.Find(&subject)
+
+	//ClassRoomのSubjectに構造体を入れる
+	for _, c := range class_room {
+		for _, s := range subject {
+			if c.RoomNumber == s.ClassRoom {
+				c.Subjects = append(c.Subjects, *s)
+			}
+		}
+	}
+
+	//BuildingのClassRoomに構造体を入れる
+	for _, b := range building {
+		for _, c := range class_room {
+			if b.BuildingName == c.BuildingName {
+				db.Where("building_name LIKE ?", "%"+c.BuildingName+"%").Find(&result)
+				for _, r := range result {
+					r.ClassRooms = append(r.ClassRooms, *c)
+				}
+			}
+		}
+	}
+	return result
+}
