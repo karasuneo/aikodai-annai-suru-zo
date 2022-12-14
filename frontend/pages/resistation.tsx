@@ -6,10 +6,10 @@ const searchBuilding = async () => {
   return res;
 };
 
-export default function Subjects(data: string) {
+export default function Subjects(data: any) {
   return (
     <div>
-      {data.res.map((building: string) => {
+      {data.res.map((building: any) => {
         return (
           <>
             <li key={building.BuildingName}></li>
