@@ -1,5 +1,7 @@
 # APIサーバーのテスト用コマンド
 
+# GET http://localhost:8080/search?bn=1&rn=&sn=
+
 # GET http://localhost:8080/building?bn=10号館大講義
 
 # GET http://localhost:8080/classroom?rn=G2210
