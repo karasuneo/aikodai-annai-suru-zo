@@ -28,6 +28,10 @@ func GetBuildingName(building_name string) []*Responce {
 	db.Where("building_name LIKE ?", "%"+building_name+"%").Find(&building)
 	building = CombineBuilding(building)
 	result = PerseResponse(building)
+
+	if len(result) == 0 {
+		result = nil
+	}
 	return result
 }
 

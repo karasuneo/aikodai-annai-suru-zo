@@ -33,6 +33,11 @@ func GetSubjectName(subject_name string) []*Responce {
 	db.Where("subject_name LIKE ?", "%"+subject_name+"%").Find(&subject)
 	building = CombineSubject(subject)
 	result = PerseResponse(building)
+
+	if len(result) == 0 {
+		result = nil
+	}
+	
 	return result
 }
 

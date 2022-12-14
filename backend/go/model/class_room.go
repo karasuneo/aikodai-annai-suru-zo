@@ -23,6 +23,11 @@ func GetRoomName(room_name string) []*Responce {
 	db.Where("room_number LIKE ?", "%"+room_name+"%").Find(&class_room)
 	building = CombineRoomNumber(class_room)
 	result = PerseResponse(building)
+
+	if len(result) == 0 {
+		result = nil
+	}
+	
 	return result
 }
 
