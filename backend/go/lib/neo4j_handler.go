@@ -8,11 +8,11 @@ import (
 
 func Neo4jConnect(from, to string) ([]float64, []float64, error) {
 	// uri := os.Getenv("NEO4J_URI")
-	username := os.Getenv("NEO4J_USERNAME")
-	pass := os.Getenv("NEO4J_PASS")
+	username := os.Getenv("NEO4J_USER")
+	pass := os.Getenv("NEO4J_PASSWORD")
 
 	// neo4jサーバーと接続
-	driver, err := neo4j.NewDriver("neo4j://172.24.0.1:57687", neo4j.BasicAuth(username, pass, ""))
+	driver, err := neo4j.NewDriver("neo4j://172.29.0.1:57687", neo4j.BasicAuth(username, pass, ""))
 	if err != nil {
 		return nil, nil, err
 	}
