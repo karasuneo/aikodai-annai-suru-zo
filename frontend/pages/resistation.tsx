@@ -1,17 +1,5 @@
-import {
-  Button,
-  Heading,
-  TableContainer,
-  Table,
-  TableCaption,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from "@chakra-ui/react";
 import { SearchBtn } from "../components/SearchField";
-import SubjectList from '../components/SubjectsList';
+import SubjectsList from '../components/SubjectsList';
 
 const searchBuilding = async () => {
   const response = await fetch(
@@ -26,7 +14,7 @@ export default function Resistation(props: any) {
   return (
     <>
       <SearchBtn />
-      <SubjectList subjectDatas={subjectDatas} />
+      <SubjectsList subjectDatas={subjectDatas} />
     </>
   );
 }

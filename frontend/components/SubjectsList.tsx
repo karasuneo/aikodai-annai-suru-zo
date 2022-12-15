@@ -10,8 +10,9 @@ import {
   Tbody,
   Td,
 } from "@chakra-ui/react";
+import Subject from "./Subject";
 
-export default function SubjectList(props: any) {
+export default function SubjectsList(props: any) {
   const { subjectDatas } = props;
   return (
     <>
@@ -30,15 +31,14 @@ export default function SubjectList(props: any) {
           {subjectDatas.map((data: any) => {
             return (
               <Tbody key={data.ID}>
-                <Tr>
-                  <Td>{data.SubjectName}</Td>
-                  <Td>
-                    {data.BuildingName}-{data.RoomNumber}
-                  </Td>
-                  <Td>{data.FolderName}</Td>
-                  <Td>{data.Grade}</Td>
-                  <Td>{data.Classification}</Td>
-                </Tr>
+                <Subject
+                  subjectName={data.SubjectName}
+                  buildingName={data.BuildingName}
+                  roomNumber={data.RoomNumber}
+                  folderName={data.FolderName}
+                  grade={data.Grade}
+                  classification={data.Classification}
+                />
               </Tbody>
             );
           })}
