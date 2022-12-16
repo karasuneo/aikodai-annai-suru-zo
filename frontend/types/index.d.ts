@@ -1,3 +1,8 @@
+interface SubjectDisplaylProps {
+  title: string;
+  information: string;
+}
+
 interface SubjectDetailProps {
   id: string;
   subjectName: string;
@@ -8,12 +13,7 @@ interface SubjectDetailProps {
   classification: string;
 }
 
-interface SubjectDisplaylProps {
-  title: string;
-  information: string;
-}
-
-interface SubjectDetailProps {
+interface SubjectDetailPropsArray<Array> {
   id: string;
   subjectName: string;
   buildingName: string;
