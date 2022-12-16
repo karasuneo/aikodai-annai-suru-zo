@@ -1,16 +1,16 @@
 package model
 
 type Responce struct {
-	ID             int
-	SubjectName    string
-	BuildingName   string
-	RoomName       string
-	RoomNumber     string
-	Grade          string
-	DayTime        string
-	FolderName     string
-	Floor          string
-	Classification string
+	ID             int `json:"id"`
+	SubjectName    string `json:"subjectName"`
+	BuildingName   string `json:"buildingName"`
+	RoomName       string `json:"roomName"`
+	RoomNumber     string  `json:"roomNumber"`
+	Grade          string `json:"grade"`
+	DayTime        string `json:"dayTime"`
+	FolderName     string `json:"folderName"`
+	Floor          string `json:"floor"`
+	Classification string `json:"classification"`
 }
 
 func PerseResponse(building []*Building) []*Responce {
