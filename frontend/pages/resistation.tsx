@@ -1,5 +1,8 @@
 import { SearchBtn } from "../components/SearchField";
-import SubjectsList from '../components/SubjectsList';
+import SubjectsList from "../components/SubjectsList";
+import SimpleSidebar from "../components/SideBar";
+import { Box, HStack, Flex, Spacer } from "@chakra-ui/react";
+import SidebarWithHeader from "../components/SideBar";
 
 const searchBuilding = async () => {
   const response = await fetch(
@@ -13,8 +16,24 @@ export default function Resistation(props: any) {
   const { subjectDatas } = props;
   return (
     <>
-      <SearchBtn />
-      <SubjectsList subjectDatas={subjectDatas} />
+    
+      
+        <SidebarWithHeader />
+      
+      <Box w="75%" mt={"4.5rem"} ml="auto">
+        <SubjectsList subjectDatas={subjectDatas} />
+      </Box>
+
+      {/* <HStack>
+        <Flex>
+          
+        </Flex>
+        <Spacer />
+        <Flex>
+          <SubjectsList subjectDatas={subjectDatas} />
+        </Flex>
+        <SearchBtn />
+      </HStack> */}
     </>
   );
 }

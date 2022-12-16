@@ -1,4 +1,12 @@
-import { Box, Flex, Heading, Stack, Spacer, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Stack,
+  Spacer,
+  Text,
+  Button,
+} from "@chakra-ui/react";
 
 const SubjectDetails = (props: any) => {
   const { title, information } = props;
@@ -26,6 +34,7 @@ export default function Subject(props: any) {
     <>
       <Box>
         <Heading fontSize="xl">{subjectName}</Heading>
+        <Button marginTop={6}>登録</Button>
       </Box>
       <Spacer />
       <Stack>
@@ -37,9 +46,7 @@ export default function Subject(props: any) {
         <SubjectDetails title={"学年"} information={grade} />
       </Stack>
       <Spacer />
-      <Box>
-        {classification}
-      </Box>
+      <Box marginBottom={0}>{classification}</Box>
     </>
   );
 }
