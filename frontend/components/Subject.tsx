@@ -8,8 +8,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const SubjectDetails = (subjectDispalys: SubjectDisplaylProps) => {
-  const { title, information } = subjectDispalys;
+const SubjectDetails = (subjectDispaly: SubjectDisplaylProps) => {
+  const { title, information } = subjectDispaly;
   return (
     <Flex>
       <Box color="gray.500">
@@ -20,7 +20,7 @@ const SubjectDetails = (subjectDispalys: SubjectDisplaylProps) => {
   );
 };
 
-export default function Subject(subjectDetails: SubjectDetailProps) {
+export default function Subject(subjectDetail: SubjectDetailProps) {
   const {
     subjectName,
     buildingName,
@@ -28,7 +28,7 @@ export default function Subject(subjectDetails: SubjectDetailProps) {
     folderName,
     grade,
     classification,
-  } = subjectDetails;
+  } = subjectDetail;
   return (
     <>
       <Box w={300}>

@@ -13,7 +13,7 @@ const searchBuilding = async () => {
   return res;
 };
 
-export default function Resistation(props: any) {
+export default function Resistation(props: {subjectDatas: Array<SubjectDetailProps>}) {
   const { subjectDatas } = props;
   return (
     <>
