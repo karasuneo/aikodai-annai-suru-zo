@@ -4,14 +4,13 @@ import Subject from "./Subject";
 
 
 
-export default function SubjectsList(props: SubjectDataPropsArray) {
+export default function SubjectsList(props: {subjectDatas: SubjectDetailProps[]}) {
   const { subjectDatas } = props;
-
   
   return (
     <>
       <Stack spacing={0}>
-        {subjectDatas.map((data: SubjectDetailProps) => {
+        {subjectDatas.map((data) => {
           return (
             <Flex p={4} shadow="md" borderWidth="1px" key={data.ID}>
               <Subject

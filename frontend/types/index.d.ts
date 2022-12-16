@@ -4,21 +4,11 @@ interface SubjectDisplaylProps {
 }
 
 interface SubjectDetailProps {
-  id: string;
-  subjectName: string;
-  buildingName: string;
-  roomNumber: string;
-  folderName: string;
-  grade: string;
-  classification: string;
-}
-
-interface SubjectDetailPropsArray<Array> {
-  id: string;
-  subjectName: string;
-  buildingName: string;
-  roomNumber: string;
-  folderName: string;
-  grade: string;
-  classification: string;
+  Id: string;
+  SubjectName: string;
+  BuildingName: string;
+  RoomNumber: string;
+  FolderName: string;
+  Grade: string;
+  Classification: string;
 }
