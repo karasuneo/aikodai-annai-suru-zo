@@ -3,7 +3,7 @@ import SubjectsList from "../components/SubjectsList";
 import SimpleSidebar from "../components/SideBar";
 import { Box, HStack, Flex, Spacer, Center, Divider } from "@chakra-ui/react";
 import SidebarWithHeader from "../components/SideBar";
-import Header from "../components/Header";
+import Header from "../components/templates/HeaderOnly";
 
 const searchBuilding = async () => {
   const response = await fetch(

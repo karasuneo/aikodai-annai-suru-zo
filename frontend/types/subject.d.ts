@@ -1,4 +1,4 @@
-interface SubjectDisplaylProps {
+interface SubjectTitleWithInfomationlProps {
   title: string;
   information: string;
 }
