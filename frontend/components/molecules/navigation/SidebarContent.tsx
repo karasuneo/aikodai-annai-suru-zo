@@ -14,10 +14,6 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-interface LinkItemProps {
-  name: string;
-  icon: IconType;
-}
 const LinkItems: Array<LinkItemProps> = [
   { name: "ホーム", icon: FiHome },
   { name: "道案内", icon: FiNavigation },
