@@ -1,5 +1,5 @@
 import { Box, Heading, Stack, Spacer, Button } from "@chakra-ui/react";
-import SubjectTitleWithInfomation from "../molecules/subject/SubjectTitleWithInfomation";
+import SubjectTitleWithInfomation from "../../atoms/subject/SubjectTitleWithInfomation";
 
 export const SubjectCard = (subjectDetail: SubjectDetailProps) => {
   const {

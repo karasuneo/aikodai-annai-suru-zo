@@ -1,5 +1,5 @@
 import { Flex, Stack } from "@chakra-ui/react";
-import { SubjectCard } from "../organisms/SubjectCard";
+import { SubjectCard } from "../molecules/subject/SubjectCard";
 
 export const SubjectsList = (props: {
   subjectDatas: Array<SubjectDetailProps>;

@@ -1,4 +1,4 @@
-import { SubjectsList } from "../components/templates/SubjectsList";
+import { SubjectsList } from "../components/organisms/SubjectsList";
 import {
   Box,
   HStack,
@@ -13,6 +13,7 @@ import { DefaultLayout } from "../components/templates/DefaultLayout";
 import { Header } from "../components/organisms/Header";
 import { SubjectSerchForm } from '../components/molecules/search/SubjectSerchForm';
 import { CoordinateSearchForm } from "../components/molecules/search/CoordinateSearchForm";
+import SimpleSidebar from '../components/organisms/SideNav';
 
 const searchBuilding = async () => {
 
@@ -35,6 +36,7 @@ export default function Subject(props: {
         
     //     {/* <SubjectsList subjectDatas={subjectDatas} /> */}
       
+    
     // </DefaultLayout>
     <SubjectSerchForm />
     // <CoordinateSearchForm />
