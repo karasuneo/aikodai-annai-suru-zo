@@ -1,19 +1,18 @@
-import { Stack, Box, Flex, Spacer } from "@chakra-ui/react";
-import Subject from "./Subject";
+import { Flex, Stack } from "@chakra-ui/react";
+import { SubjectCard } from "../organisms/SubjectCard";
 
-
-
-
-export default function SubjectsList(props: {subjectDatas: Array<SubjectDetailProps>}) {
+export const SubjectsList = (props: {
+  subjectDatas: Array<SubjectDetailProps>;
+}) => {
   const { subjectDatas } = props;
-  
+
   return (
     <>
       <Stack spacing={0}>
         {subjectDatas.map((data) => {
           return (
             <Flex p={4} shadow="md" borderWidth="1px" key={data.id}>
-              <Subject
+              <SubjectCard
                 id={data.id}
                 subjectName={data.subjectName}
                 buildingName={data.buildingName}
@@ -28,4 +27,4 @@ export default function SubjectsList(props: {subjectDatas: Array<SubjectDetailPr
       </Stack>
     </>
   );
-}
+};

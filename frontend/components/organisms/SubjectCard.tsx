@@ -1,8 +1,7 @@
 import { Box, Heading, Stack, Spacer, Button } from "@chakra-ui/react";
+import SubjectTitleWithInfomation from "../molecules/subject/SubjectTitleWithInfomation";
 
-import SubjectTitleWithInfomation from "../molecules/subject/SubjectTitleWithInfomation"
-
-export default function SubjectCard(subjectDetail: SubjectDetailProps) {
+export const SubjectCard = (subjectDetail: SubjectDetailProps) => {
   const {
     subjectName,
     buildingName,
@@ -33,4 +32,4 @@ export default function SubjectCard(subjectDetail: SubjectDetailProps) {
       <Box marginBottom={0}>{classification}</Box>
     </>
   );
-}
+};
