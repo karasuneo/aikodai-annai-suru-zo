@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { RiGithubFill } from "react-icons/ri";
 import Link from "next/link";
 import { Flex, Box, Spacer, Heading, HStack, Center } from "@chakra-ui/react";
-import { SearchForm } from "../molecules/search/SubjectSerchForm";
 
 export const Header = () => {
   const router = useRouter();

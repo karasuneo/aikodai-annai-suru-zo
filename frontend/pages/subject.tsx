@@ -36,8 +36,8 @@ export default function Subject(props: {
     //     {/* <SubjectsList subjectDatas={subjectDatas} /> */}
       
     // </DefaultLayout>
-    // <SubjectSerchForm />
-    <CoordinateSearchForm />
+    <SubjectSerchForm />
+    // <CoordinateSearchForm />
   );
 }
 export const getServerSideProps = async () => {

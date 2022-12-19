@@ -2,13 +2,12 @@ import {
   FormLabel,
   FormControl,
   Select,
-  Input,
   Button,
   HStack,
   VStack,
   Stack,
 } from "@chakra-ui/react";
-import { FiArrowRight, FiNavigation, FiMapPin } from "react-icons/fi";
+import { useState } from "react";
 
 const Buildings: Array<string> = [
   "1号館",
@@ -74,13 +73,24 @@ const Buildings: Array<string> = [
 ];
 
 export const CoordinateSearchForm = () => {
+  const [placeOfDeparture, setPlaceOfDeparture] = useState("");
+  const [placeOfDestination, setPlaceOfDestination] = useState("");
+
+  const handleClick = () => {
+    setPlaceOfDeparture("");
+    setPlaceOfDestination("");
+  };
   return (
     <VStack>
       <Stack w="100vh">
         <HStack>
           <FormControl>
             <FormLabel>出発地</FormLabel>
-            <Select placeholder="出発地を選択">
+            <Select
+              placeholder="出発地を選択"
+              value={placeOfDeparture}
+              onChange={(e) => setPlaceOfDeparture(e.target.value)}
+            >
               {Buildings.map((building, index) => {
                 return <option key={index}>{building}</option>;
               })}
@@ -88,7 +98,11 @@ export const CoordinateSearchForm = () => {
           </FormControl>
           <FormControl>
             <FormLabel>目的地</FormLabel>
-            <Select placeholder="目的地を選択">
+            <Select
+              placeholder="目的地を選択"
+              value={placeOfDestination}
+              onChange={(e) => setPlaceOfDestination(e.target.value)}
+            >
               {Buildings.map((building, index) => {
                 return <option key={index}>{building}</option>;
               })}
@@ -96,7 +110,7 @@ export const CoordinateSearchForm = () => {
           </FormControl>
         </HStack>
 
-        <Button mt={4} colorScheme="teal">
+        <Button mt={4} colorScheme="teal" onClick={handleClick}>
           ナビゲーション開始
         </Button>
       </Stack>
