@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { RiGithubFill } from "react-icons/ri";
+import Link from "next/link";
 import { Flex, Box, Spacer, Heading, HStack, Center } from "@chakra-ui/react";
-import { SearchForm } from "../molecules/search/SerchForm";
+import { SearchForm } from "../molecules/search/SubjectSerchForm";
 
 export const Header = () => {
   const router = useRouter();
@@ -22,12 +23,10 @@ export const Header = () => {
       <Heading cursor="pointer" size="md" onClick={() => handleRedirect()}>
         愛工大案内する蔵
       </Heading>
-      
-      <Box>
-        <Center h="100%">
-          <SearchForm />
-        </Center>
-      </Box>
+      <Spacer />
+      <Link href="https://github.com/karasuneo">
+        <RiGithubFill cursor="pointer" size="2rem" />
+      </Link>
     </Flex>
   );
 };

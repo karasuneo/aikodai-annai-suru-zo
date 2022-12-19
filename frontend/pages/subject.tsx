@@ -1,9 +1,22 @@
-import { SearchBtn } from "../components/SearchField";
-import {SubjectsList} from "../components/templates/SubjectsList";
-import { Box, HStack, Flex, Spacer, Center, Divider } from "@chakra-ui/react";
+import { SubjectsList } from "../components/templates/SubjectsList";
+import {
+  Box,
+  HStack,
+  Flex,
+  Spacer,
+  Center,
+  Divider,
+  VStack,
+} from "@chakra-ui/react";
 import { HeaderOnly } from "../components/templates/HeaderOnly";
+import { DefaultLayout } from "../components/templates/DefaultLayout";
+import { Header } from "../components/organisms/Header";
+import { SubjectSerchForm } from '../components/molecules/search/SubjectSerchForm';
+import { CoordinateSearchForm } from "../components/molecules/search/CoordinateSearchForm";
 
 const searchBuilding = async () => {
+
+
   const response = await fetch(
     "http://localhost:8080/search?bn=10号館大講義室&rn=&sn="
   );
@@ -11,31 +24,20 @@ const searchBuilding = async () => {
   return res;
 };
 
-export default function Resistation(props: {
+export default function Subject(props: {
   subjectDatas: Array<SubjectDetailProps>;
 }) {
   const { subjectDatas } = props;
   return (
-    <>
-      <HeaderOnly>
-        {/* <SearchForm />
-        <SidebarWithHeader /> */}
-        <Box w="80vh" mt={"4.5rem"} ml="auto">
-          <SubjectsList subjectDatas={subjectDatas} />
-        </Box>
-      </HeaderOnly>
-
-      {/* <HStack>
-        <Flex>
-          
-        </Flex>
-        <Spacer />
-        <Flex>
-          <SubjectsList subjectDatas={subjectDatas} />
-        </Flex>
-        <SearchBtn />
-      </HStack> */}
-    </>
+    // <DefaultLayout>
+     
+    //     <Header />
+        
+    //     {/* <SubjectsList subjectDatas={subjectDatas} /> */}
+      
+    // </DefaultLayout>
+    // <SubjectSerchForm />
+    <CoordinateSearchForm />
   );
 }
 export const getServerSideProps = async () => {
