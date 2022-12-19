@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { SidebarContent } from "../molecules/navigation/SidebarContent";
 
-export default function SimpleSidebar({ children }: { children: React.ReactNode }) {
+export const SideNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
@@ -28,11 +28,6 @@ export default function SimpleSidebar({ children }: { children: React.ReactNode 
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
-
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
-      </Box>
     </Box>
   );
 }

@@ -13,7 +13,8 @@ import { DefaultLayout } from "../components/templates/DefaultLayout";
 import { Header } from "../components/organisms/Header";
 import { SubjectSerchForm } from '../components/molecules/search/SubjectSerchForm';
 import { CoordinateSearchForm } from "../components/molecules/search/CoordinateSearchForm";
-import SimpleSidebar from '../components/organisms/SideNav';
+import {SideNav} from '../components/organisms/SideNav';
+import { Timetable } from "../components/molecules/timetable/Timetable";
 
 const searchBuilding = async () => {
 
@@ -36,9 +37,10 @@ export default function Subject(props: {
         
     //     {/* <SubjectsList subjectDatas={subjectDatas} /> */}
       
-    
+    <Timetable />
+    // <SideNav  />
     // </DefaultLayout>
-    <SubjectSerchForm />
+    // <SubjectSerchForm />
     // <CoordinateSearchForm />
   );
 }
