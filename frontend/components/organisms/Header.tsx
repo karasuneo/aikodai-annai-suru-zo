@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { RiGithubFill } from "react-icons/ri";
 import Link from "next/link";
-import { Flex, Box, Spacer, Heading, HStack, Center } from "@chakra-ui/react";
+import { Flex, Box, Spacer, Heading, HStack, Center, Button } from "@chakra-ui/react";
 
 export const Header = () => {
   const router = useRouter();
@@ -23,9 +23,7 @@ export const Header = () => {
         愛工大案内する蔵
       </Heading>
       <Spacer />
-      <Link href="https://github.com/karasuneo">
-        <RiGithubFill cursor="pointer" size="2rem" />
-      </Link>
+      <Button>サインイン</Button>
     </Flex>
   );
 };
