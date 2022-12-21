@@ -80,10 +80,10 @@ export default function MapDisplay(props: {
       />
 
       <Polyline
-        pathOptions={{ color: "purple", weight: 10 }}
+        pathOptions={{ color: "red", weight: 3 }}
         positions={coodiante}
       />
-      {/* {coordinateDatas.map((coordinates, index) => {
+      {coordinateDatas.map((coordinates, index) => {
         return (
           <Marker
             key={index}
@@ -94,7 +94,7 @@ export default function MapDisplay(props: {
             </Popup>
           </Marker>
         );
-      })} */}
+      })}
     </MapContainer>
   );
 }
