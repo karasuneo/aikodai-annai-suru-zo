@@ -7,6 +7,7 @@ import (
 
 func Init() {
 	r := gin.Default()
+	r.GET("/search", controller.GetResponse)
 	r.GET("/building", controller.GetSearchBuildingResult)
 	r.GET("/classroom", controller.GetSearchRoomNameResult)
 	r.GET("/subject", controller.GetSearchSubjectNameResult)
