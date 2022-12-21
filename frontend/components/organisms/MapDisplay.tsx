@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, Polyline } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  Polyline,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
@@ -17,6 +23,13 @@ export default function MapDisplay(props: {
 }) {
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
   const { coordinateDatas } = props;
+  const coodiante: any = [
+    coordinateDatas.map((data) => {
+      return [data.latitude, data.longitude];
+    }),
+  ];
+
+  console.log(coodiante);
 
   const getPosition = () => {
     // 現在地を取得
@@ -66,16 +79,10 @@ export default function MapDisplay(props: {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-<Polyline 
-    pathOptions={{ color: 'purple', weight: 10 }} 
-    positions={[
-        [35.70970550333407, 139.80904279241705],
-        [35.70961838678436, 139.8098903704621],
-        [35.709940717542715, 139.81296954639802],
-        [35.71013237305134, 139.81329141147842],
-        [35.710820586761024, 139.81380639560706],
-        [35.710419855450226, 139.81458960063608]
-    ]} />
+      <Polyline
+        pathOptions={{ color: "purple", weight: 10 }}
+        positions={coodiante}
+      />
       {/* {coordinateDatas.map((coordinates, index) => {
         return (
           <Marker
