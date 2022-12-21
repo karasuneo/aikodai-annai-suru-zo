@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-
 import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -13,8 +12,11 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow.src,
 });
 
-const Map = () => {
+export default function MapDisplay(props: {
+  coordinateDatas: Array<CoordinateProps>;
+}) {
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+  const { coordinateDatas } = props;
 
   const getPosition = () => {
     // 現在地を取得
@@ -63,13 +65,29 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[position.latitude, position.longitude]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+
+<Polyline 
+    pathOptions={{ color: 'purple', weight: 10 }} 
+    positions={[
+        [35.70970550333407, 139.80904279241705],
+        [35.70961838678436, 139.8098903704621],
+        [35.709940717542715, 139.81296954639802],
+        [35.71013237305134, 139.81329141147842],
+        [35.710820586761024, 139.81380639560706],
+        [35.710419855450226, 139.81458960063608]
+    ]} />
+      {/* {coordinateDatas.map((coordinates, index) => {
+        return (
+          <Marker
+            key={index}
+            position={[coordinates.latitude, coordinates.longitude]}
+          >
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        );
+      })} */}
     </MapContainer>
   );
-};
-
-export default Map;
+}

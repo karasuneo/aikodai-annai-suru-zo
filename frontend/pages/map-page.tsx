@@ -1,16 +1,29 @@
 import dynamic from "next/dynamic";
 import React from "react";
 
-function MapPage() {
-  const Map = React.useMemo(
-    () =>
-      dynamic(() => import("../components/Map"), {
-        loading: () => <p>A map is loading</p>,
-        ssr: false,
-      }),
-    []
+const searchCoordinate = async () => {
+  const response = await fetch(
+    "http://localhost:8080/coordinate?fr=10号館&to=4号館"
   );
-  return <Map />;
+  const res = await response.json();
+  return res;
+};
+
+const MapDisplay = dynamic(() => import("../components/organisms/MapDisplay"), {
+  ssr: false,
+});
+
+export default function MapPage(props: {
+  coordinateDatas: Array<CoordinateProps>;
+}) {
+  const { coordinateDatas } = props;
+  return <MapDisplay coordinateDatas={coordinateDatas} />;
 }
 
-export default MapPage;
+export const getServerSideProps = async () => {
+  const coordinateDatas = await searchCoordinate();
+
+  return {
+    props: { coordinateDatas },
+  };
+};
