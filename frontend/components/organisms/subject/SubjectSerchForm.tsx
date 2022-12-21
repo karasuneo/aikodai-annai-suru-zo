@@ -1,15 +1,26 @@
 import { FormLabel, Input, Button, VStack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export const SubjectSerchForm = () => {
   const [buildingName, setBuildingName] = useState("");
   const [className, setClassName] = useState("");
   const [subjectName, setSubjectName] = useState("");
+  const router = useRouter();
 
   const handleClick = () => {
     setBuildingName("");
     setClassName("");
     setSubjectName("");
+
+    router.push({
+      pathname: "/subject",
+      query: {
+        buildingName: buildingName,
+        className: className,
+        subjectName: subjectName,
+      },
+    });
   };
 
   return (
