@@ -1,4 +1,4 @@
-import { SubjectsList } from "../components/organisms/SubjectsList";
+import { SubjectsList } from "../components/organisms/subject/SubjectsList";
 import { GetServerSideProps } from "next";
 import {
   Box,
@@ -11,9 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { HeaderOnly } from "../components/templates/HeaderOnly";
 import { DefaultLayout } from "../components/templates/DefaultLayout";
-import { Header } from "../components/organisms/Header";
-import { SubjectSerchForm } from "../components/molecules/search/SubjectSerchForm";
-import { CoordinateSearchForm } from "../components/molecules/search/CoordinateSearchForm";
+import { Header } from "../components/organisms/header/Header";
+import { SubjectSerchForm } from "../components/organisms/subject/SubjectSerchForm";
+import { CoordinateSearchForm } from "../components/organisms/map/CoordinateSearchForm";
 import { SideNav } from "../components/organisms/SideNav";
 import { Timetable } from "../components/molecules/timetable/Timetable";
 import { SubjectPageLayout } from "../components/templates/SubjectPageLayout";

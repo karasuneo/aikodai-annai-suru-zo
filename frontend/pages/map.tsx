@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
 
-const MapDisplay = dynamic(() => import("../components/organisms/MapDisplay"), {
+const MapDisplay = dynamic(() => import("../components/organisms/map/MapDisplay"), {
   ssr: false,
 });
 
