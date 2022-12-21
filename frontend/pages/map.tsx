@@ -1,13 +1,6 @@
+import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
-
-const searchCoordinate = async () => {
-  const response = await fetch(
-    "http://localhost:8080/coordinate?fr=10号館&to=4号館"
-  );
-  const res = await response.json();
-  return res;
-};
 
 const MapDisplay = dynamic(() => import("../components/organisms/MapDisplay"), {
   ssr: false,
@@ -20,8 +13,13 @@ export default function MapPage(props: {
   return <MapDisplay coordinateDatas={coordinateDatas} />;
 }
 
-export const getServerSideProps = async () => {
-  const coordinateDatas = await searchCoordinate();
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const fr = context.query.placeOfDeparture
+  const to = context.query.placeOfDestination
+  const response = await fetch(
+    `http://localhost:8080/coordinate?fr=${fr}&to=${to}`
+  );
+  const coordinateDatas = await response.json();
 
   return {
     props: { coordinateDatas },

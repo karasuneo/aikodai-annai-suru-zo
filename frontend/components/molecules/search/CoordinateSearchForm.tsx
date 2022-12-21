@@ -8,6 +8,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Buildings: Array<string> = [
   "1号館",
@@ -75,10 +76,19 @@ const Buildings: Array<string> = [
 export const CoordinateSearchForm = () => {
   const [placeOfDeparture, setPlaceOfDeparture] = useState("");
   const [placeOfDestination, setPlaceOfDestination] = useState("");
+  const router = useRouter();
 
   const handleClick = () => {
     setPlaceOfDeparture("");
     setPlaceOfDestination("");
+
+    router.push({
+      pathname: "/map",
+      query: {
+        placeOfDeparture: placeOfDeparture,
+        placeOfDestination: placeOfDestination,
+      },
+    });
   };
   return (
     <VStack>
