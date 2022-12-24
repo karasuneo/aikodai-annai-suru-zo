@@ -8,7 +8,6 @@ export const SubjectPageLayout = (props: any) => {
     <Flex>
       <SideNav />
       {children}
-     
     </Flex>
   );
 };
