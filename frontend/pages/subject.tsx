@@ -1,4 +1,5 @@
-import { SubjectsList } from "../components/organisms/SubjectsList";
+import { SubjectsList } from "../components/organisms/subject/SubjectsList";
+import { GetServerSideProps } from "next";
 import {
   Box,
   HStack,
@@ -10,34 +11,27 @@ import {
 } from "@chakra-ui/react";
 import { HeaderOnly } from "../components/templates/HeaderOnly";
 import { DefaultLayout } from "../components/templates/DefaultLayout";
-import { Header } from "../components/organisms/Header";
-import { SubjectSerchForm } from "../components/molecules/search/SubjectSerchForm";
-import { CoordinateSearchForm } from "../components/molecules/search/CoordinateSearchForm";
+import { Header } from "../components/organisms/header/Header";
+import { SubjectSerchForm } from "../components/organisms/subject/SubjectSerchForm";
+import { CoordinateSearchForm } from "../components/organisms/map/CoordinateSearchForm";
 import { SideNav } from "../components/organisms/SideNav";
 import { Timetable } from "../components/molecules/timetable/Timetable";
 import { SubjectPageLayout } from "../components/templates/SubjectPageLayout";
-
-const searchBuilding = async () => {
-  const response = await fetch(
-    "http://localhost:8080/search?bn=10号館大講義室&rn=&sn="
-  );
-  const res = await response.json();
-  return res;
-};
+import { ParsedUrlQueryInput } from "querystring";
 
 export default function Subject(props: {
   subjectDatas: Array<SubjectDetailProps>;
 }) {
   const { subjectDatas } = props;
+
   return (
     // <DefaultLayout>
 
     //     <Header />
 
     //     {/* <SubjectsList subjectDatas={subjectDatas} /> */}
-    <SubjectPageLayout>
-      <SubjectsList subjectDatas={subjectDatas} />
-    </SubjectPageLayout>
+
+    <SubjectsList subjectDatas={subjectDatas} />
 
     // <Timetable />
     // <SideNav  />
@@ -46,8 +40,15 @@ export default function Subject(props: {
     // <CoordinateSearchForm />
   );
 }
-export const getServerSideProps = async () => {
-  const subjectDatas = await searchBuilding();
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const bn = context.query.buildingName;
+  const rn = context.query.className;
+  const sn = context.query.subjectName;
+
+  const response = await fetch(
+    `http://localhost:8080/search?bn=${bn}&rn=${rn}&sn=${sn}`
+  );
+  const subjectDatas = await response.json();
 
   return {
     props: { subjectDatas },

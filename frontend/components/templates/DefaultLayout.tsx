@@ -1,5 +1,5 @@
 import { Flex, Box, Spacer, Heading, Stack, Center } from "@chakra-ui/react";
-import { Header } from "../organisms/Header";
+import { Header } from "../organisms/header/Header";
 
 
 export const DefaultLayout = (props: any) => {

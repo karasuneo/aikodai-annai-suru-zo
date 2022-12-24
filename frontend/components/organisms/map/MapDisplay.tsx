@@ -1,33 +1,42 @@
 import { useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-
 import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  Polyline,
+} from "react-leaflet";
 
-// delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon.src,
   iconRetinaUrl: markerIcon2x.src,
   shadowUrl: markerShadow.src,
 });
 
-const Map = () => {
+export default function MapDisplay(props: {
+  coordinateDatas: Array<CoordinateProps>;
+}) {
+  const { coordinateDatas } = props;
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+  const centerPosition: L.LatLngExpression = [
+    35.183587556195846, 137.1130204400427,
+  ];
 
+  const coodiante: L.LatLngExpression[][] = [
+    coordinateDatas.map((data) => {
+      return [data.latitude, data.longitude];
+    }),
+  ];
+
+  // 現在地を取得
   const getPosition = () => {
-    // 現在地を取得
     navigator.geolocation.watchPosition(
       (position) => {
-        // 取得成功した場合
-        console.log(
-          "緯度:" +
-            position.coords.latitude +
-            ",経度" +
-            position.coords.longitude
-        );
         const { latitude, longitude } = position.coords;
         setPosition({ latitude, longitude });
       },
@@ -50,9 +59,10 @@ const Map = () => {
       }
     );
   };
+
   return (
     <MapContainer
-      center={[35.183587556195846, 137.1130204400427]}
+      center={centerPosition}
       zoom={13}
       minZoom={17}
       maxZoom={18}
@@ -64,6 +74,10 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <Polyline
+        pathOptions={{ color: "red", weight: 3 }}
+        positions={coodiante}
+      />
       <Marker position={[position.latitude, position.longitude]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
@@ -71,6 +85,4 @@ const Map = () => {
       </Marker>
     </MapContainer>
   );
-};
-
-export default Map;
+}
