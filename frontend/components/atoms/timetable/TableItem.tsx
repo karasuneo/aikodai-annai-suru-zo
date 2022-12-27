@@ -1,6 +1,7 @@
 import { Box, Button, Text } from "@chakra-ui/react";
+import { FC } from 'react';
 
-export const TimeItem = () => {
+export const TimeItem: FC = () => {
   return (
     <Box>
       <Text>人工知能</Text>

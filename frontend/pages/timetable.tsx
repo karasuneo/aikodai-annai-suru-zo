@@ -10,7 +10,6 @@ import {
   Tbody,
   Td,
 } from "@chakra-ui/react";
-import { SearchBtn } from "../components/SearchField";
 
 const searchBuilding = async () => {
   const response = await fetch(
@@ -23,7 +22,6 @@ const searchBuilding = async () => {
 export default function Resistation(props: any) {
   return (
     <>
-      <SearchBtn />
       <TableContainer overflowX="unset" overflowY="unset">
         <Table variant="simple">
           <TableCaption>Imperial to metric conversion factors</TableCaption>
