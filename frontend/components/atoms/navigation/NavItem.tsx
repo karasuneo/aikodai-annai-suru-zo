@@ -1,6 +1,8 @@
+import { FC } from "react";
 import { Flex, Icon, Link } from "@chakra-ui/react";
 
-export const NavItem = ({ icon, children }: NavItemProps) => {
+export const NavItem: FC<NavItemProps> = (props) => {
+  const { icon, children } = props;
   return (
     <Link
       href="#"

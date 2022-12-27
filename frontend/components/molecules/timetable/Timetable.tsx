@@ -1,4 +1,5 @@
-import { TimeItem } from '../../atoms/timetable/TableItem';
+import { TimeItem } from "../../atoms/timetable/TableItem";
+import { FC } from "react";
 import {
   TableContainer,
   Table,
@@ -11,7 +12,7 @@ import {
   Tfoot,
 } from "@chakra-ui/react";
 
-export const Timetable = () => {
+export const Timetable: FC = () => {
   return (
     <TableContainer>
       <Table variant="simple">
@@ -24,13 +25,14 @@ export const Timetable = () => {
             <Th>水</Th>
             <Th>木</Th>
             <Th>金</Th>
-            
           </Tr>
         </Thead>
         <Tbody>
           <Tr>
             <Td>I</Td>
-            <Td><TimeItem /></Td>
+            <Td>
+              <TimeItem />
+            </Td>
             <Td>millimetres (mm)</Td>
             <Td>millimetres (mm)</Td>
             <Td>millimetres (mm)</Td>
@@ -39,27 +41,22 @@ export const Timetable = () => {
           <Tr>
             <Td>II</Td>
             <Td>centimetres (cm)</Td>
-            
           </Tr>
           <Tr>
             <Td>III</Td>
             <Td>metres (m)</Td>
-            
           </Tr>
           <Tr>
             <Td>IV</Td>
             <Td>millimetres (mm)</Td>
-            
           </Tr>
           <Tr>
             <Td>V</Td>
             <Td>centimetres (cm)</Td>
-            
           </Tr>
           <Tr>
             <Td>VI</Td>
             <Td>metres (m)</Td>
-            
           </Tr>
           <Tr>
             <Td>VII</Td>
@@ -67,14 +64,12 @@ export const Timetable = () => {
         </Tbody>
         <Tfoot>
           <Tr>
-          
             <Th></Th>
             <Th>月</Th>
             <Th>火</Th>
             <Th>水</Th>
             <Th>木</Th>
-            <Th>金</Th> 
-         
+            <Th>金</Th>
           </Tr>
         </Tfoot>
       </Table>
