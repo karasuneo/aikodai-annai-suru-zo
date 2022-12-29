@@ -1,27 +1,18 @@
 import { FormLabel, Input, Button, VStack } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useSearchSubject } from "../../../hooks/subject/useSearchSubject";
 
 export const SubjectSerchForm = () => {
-  const [buildingName, setBuildingName] = useState("");
-  const [className, setClassName] = useState("");
-  const [subjectName, setSubjectName] = useState("");
-  const router = useRouter();
+  const {
+    getSubject,
+    buildingName,
+    setBuildingName,
+    className,
+    setClassName,
+    subjectName,
+    setSubjectName,
+  } = useSearchSubject();
 
-  const handleClick = () => {
-    setBuildingName("");
-    setClassName("");
-    setSubjectName("");
-
-    router.push({
-      pathname: "/subject",
-      query: {
-        buildingName: buildingName,
-        className: className,
-        subjectName: subjectName,
-      },
-    });
-  };
+  const onClickGetSubject = () => getSubject();
 
   return (
     <VStack>
@@ -47,7 +38,7 @@ export const SubjectSerchForm = () => {
           value={subjectName}
           onChange={(e) => setSubjectName(e.target.value)}
         />
-        <Button mt={4} colorScheme="teal" onClick={handleClick}>
+        <Button mt={4} colorScheme="teal" onClick={onClickGetSubject}>
           検索
         </Button>
       </VStack>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-
 export const useSerchCoordinate = () => {
   const [placeOfDeparture, setPlaceOfDeparture] = useState("");
   const [placeOfDestination, setPlaceOfDestination] = useState("");
@@ -82,6 +81,13 @@ export const useSerchCoordinate = () => {
     "野球場",
     "陸上競技場",
   ];
-  
-  return { getCoordinate, placeOfDeparture, setPlaceOfDeparture, placeOfDestination, setPlaceOfDestination, Buildings };
+
+  return {
+    getCoordinate,
+    placeOfDeparture,
+    setPlaceOfDeparture,
+    placeOfDestination,
+    setPlaceOfDestination,
+    Buildings,
+  };
 };
