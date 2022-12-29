@@ -2,9 +2,12 @@ import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
 
-const MapDisplay = dynamic(() => import("../components/organisms/map/MapDisplay"), {
-  ssr: false,
-});
+const MapDisplay = dynamic(
+  () => import("../components/organisms/map/MapDisplay"),
+  {
+    ssr: false,
+  }
+);
 
 export default function MapPage(props: {
   coordinateDatas: Array<CoordinateProps>;
@@ -14,8 +17,8 @@ export default function MapPage(props: {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const fr = context.query.placeOfDeparture
-  const to = context.query.placeOfDestination
+  const fr = context.query.placeOfDeparture;
+  const to = context.query.placeOfDestination;
   const response = await fetch(
     `http://localhost:8080/coordinate?fr=${fr}&to=${to}`
   );
