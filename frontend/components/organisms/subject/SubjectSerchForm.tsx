@@ -1,5 +1,5 @@
 import { FormLabel, Input, Button, VStack } from "@chakra-ui/react";
-import { useSearchSubject } from "../../../hooks/subject/useSearchSubject";
+import { useSearchSubject } from "../../../hooks/search/subject/useSearchSubject";
 
 export const SubjectSerchForm = () => {
   const {

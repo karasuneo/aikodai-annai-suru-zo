@@ -19,9 +19,11 @@ export default function MapPage(props: {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const fr = context.query.placeOfDeparture;
   const to = context.query.placeOfDestination;
+
   const response = await fetch(
     `http://localhost:8080/coordinate?fr=${fr}&to=${to}`
   );
+
   const coordinateDatas = await response.json();
 
   return {

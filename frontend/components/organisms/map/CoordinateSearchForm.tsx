@@ -1,4 +1,4 @@
-import { useSerchCoordinate } from "../../../hooks/coordinate/useSerchCoordinate";
+import { useSerchCoordinate } from "../../../hooks/search/coordinate/useSerchCoordinate";
 import {
   FormLabel,
   FormControl,
