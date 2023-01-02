@@ -1,14 +1,14 @@
 import { extendTheme } from "@chakra-ui/react";
 
-const theme = extendTheme({
+const thema = extendTheme({
   styles: {
     global: {
       body: {
-        backgroundColor: "blue.100",
-        color: "blue.800",
+        backgroundColor: "gray.100",
+        color: "gray.800",
       },
     },
   },
 });
 
-export default theme;
+export default thema;

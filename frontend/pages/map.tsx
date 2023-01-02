@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
+import { HeaderLayout } from "../components/templates/HeaderLayout";
 
 const MapDisplay = dynamic(
   () => import("../components/organisms/map/MapDisplay"),
@@ -13,7 +14,11 @@ export default function MapPage(props: {
   coordinateDatas: Array<CoordinateProps>;
 }) {
   const { coordinateDatas } = props;
-  return <MapDisplay coordinateDatas={coordinateDatas} />;
+  return (
+    <HeaderLayout>
+      <MapDisplay coordinateDatas={coordinateDatas} />
+    </HeaderLayout>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
