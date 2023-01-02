@@ -1,4 +1,3 @@
-import React, { ReactNode } from "react";
 import {
   IconButton,
   Avatar,
@@ -40,16 +39,14 @@ export const Header = ({ onOpen, ...rest }: MobileProps) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
       <Text
         display={{ base: "flex", md: "none" }}
         fontSize="2xl"
         fontFamily="monospace"
         fontWeight="bold"
       >
-        Logo
+        愛工大案内する蔵
       </Text>
-
       <HStack spacing={{ base: "0", md: "6" }}>
         <IconButton
           size="lg"

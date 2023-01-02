@@ -7,7 +7,6 @@ import {
   BoxProps,
 } from "@chakra-ui/react";
 import { FiHome, FiNavigation, FiMap, FiGrid } from "react-icons/fi";
-import { IconType } from "react-icons";
 import { NavItem } from "../../molecules/sidebar/NavItem";
 
 interface SidebarProps extends BoxProps {
@@ -34,8 +33,8 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
+        <Text fontSize="xl" fontFamily="monospace" fontWeight="bold">
+          愛工大案内する蔵
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>

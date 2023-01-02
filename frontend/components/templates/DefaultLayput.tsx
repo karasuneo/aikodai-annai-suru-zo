@@ -14,7 +14,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const SidebarWithHeader: FC<Props> = (props) => {
+export const DefaultLayput: FC<Props> = (props) => {
   const { children } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -38,7 +38,7 @@ export const SidebarWithHeader: FC<Props> = (props) => {
         </DrawerContent>
       </Drawer>
       <Header onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p={4}>
         {children}
       </Box>
     </Box>

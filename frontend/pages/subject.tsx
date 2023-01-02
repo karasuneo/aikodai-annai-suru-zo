@@ -1,20 +1,8 @@
 import { SubjectsList } from "../components/organisms/subject/SubjectsList";
 import { GetServerSideProps } from "next";
-import { Header } from "../components/organisms/header/Header";
-import {
-  Box,
-  HStack,
-  Flex,
-  Spacer,
-  Center,
-  Divider,
-  VStack,
-} from "@chakra-ui/react";
-import { DefaultLayput } from "../components/templates/DefaultLayput";
-import {
-  SidebarWithHeader,
- 
-} from "../components/organisms/SidebarWithHeader";
+import { DefaultLayput } from '../components/templates/DefaultLayput';
+
+
 
 export default function Subject(props: {
   subjectDatas: Array<SubjectDetailProps>;
@@ -22,9 +10,9 @@ export default function Subject(props: {
   const { subjectDatas } = props;
 
   return (
-    <SidebarWithHeader>
+    <DefaultLayput>
       <SubjectsList subjectDatas={subjectDatas} />
-    </SidebarWithHeader>
+    </DefaultLayput>
   );
 }
 
