@@ -9,7 +9,7 @@ export const SubjectsList = (props: {
   return (
     <>
       <Stack spacing={0}>
-        {subjectDatas.map((data) => {
+        {subjectDatas?.map((data) => {
           return (
             <Flex p={4} shadow="md" borderWidth="1px" key={data.id}>
               <SubjectCard

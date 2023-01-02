@@ -1,6 +1,11 @@
+import { FC, ReactNode } from "react";
 import { Header } from "../organisms/header/Header";
 
-export const HeaderOnly = (props: any) => {
+interface Props {
+  children: ReactNode;
+}
+
+export const HeaderLayout: FC<Props> = (props) => {
   const { children } = props;
   return (
     <>
