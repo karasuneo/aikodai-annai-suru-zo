@@ -1,7 +1,10 @@
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
+import { SideNav } from "../components/organisms/SidebarWithHeader";
 import { HeaderLayout } from "../components/templates/HeaderLayout";
+import { Stack } from '@chakra-ui/react';
+import { DefaultLayput } from "../components/templates/DefaultLayput";
 
 const MapDisplay = dynamic(
   () => import("../components/organisms/map/MapDisplay"),
@@ -15,9 +18,13 @@ export default function MapPage(props: {
 }) {
   const { coordinateDatas } = props;
   return (
-    <HeaderLayout>
-      <MapDisplay coordinateDatas={coordinateDatas} />
-    </HeaderLayout>
+    <DefaultLayput>
+{/* <MapDisplay coordinateDatas={coordinateDatas} /> */}
+    </DefaultLayput>
+      
+      
+      
+  
   );
 }
 

@@ -10,7 +10,11 @@ import {
   Divider,
   VStack,
 } from "@chakra-ui/react";
-import { HeaderLayout } from "../components/templates/HeaderLayout";
+import { DefaultLayput } from "../components/templates/DefaultLayput";
+import {
+  SidebarWithHeader,
+ 
+} from "../components/organisms/SidebarWithHeader";
 
 export default function Subject(props: {
   subjectDatas: Array<SubjectDetailProps>;
@@ -18,9 +22,9 @@ export default function Subject(props: {
   const { subjectDatas } = props;
 
   return (
-    <HeaderLayout>
+    <SidebarWithHeader>
       <SubjectsList subjectDatas={subjectDatas} />
-    </HeaderLayout>
+    </SidebarWithHeader>
   );
 }
 

@@ -1,3 +1,4 @@
+import { ReactNode, FC } from "react";
 import {
   Box,
   useColorModeValue,
@@ -5,10 +6,18 @@ import {
   DrawerContent,
   useDisclosure,
 } from "@chakra-ui/react";
-import { SidebarContent } from "../molecules/navigation/SidebarContent";
+import { SidebarContent } from "../organisms/sidebar/SidebarContent";
 
-export const SideNav = () => {
+import { Header } from "../organisms/header/Header";
+
+interface Props {
+  children: ReactNode;
+}
+
+export const SidebarWithHeader: FC<Props> = (props) => {
+  const { children } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
@@ -28,6 +37,10 @@ export const SideNav = () => {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
+      <Header onOpen={onOpen} />
+      <Box ml={{ base: 0, md: 60 }} p="4">
+        {children}
+      </Box>
     </Box>
   );
-}
+};

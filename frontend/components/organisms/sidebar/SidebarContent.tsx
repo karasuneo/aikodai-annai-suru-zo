@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { FiHome, FiNavigation, FiMap, FiGrid } from "react-icons/fi";
 import { IconType } from "react-icons";
-import { NavItem } from "../../atoms/navigation/NavItem";
+import { NavItem } from "../../molecules/sidebar/NavItem";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -21,15 +21,17 @@ const LinkItems: Array<LinkItemProps> = [
   { name: "学内マップ", icon: FiMap },
 ];
 
-export const SidebarContent = ({ onClose }: SidebarProps) => {
+export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
+      transition="3s ease"
       bg={useColorModeValue("white", "gray.900")}
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
+      {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
