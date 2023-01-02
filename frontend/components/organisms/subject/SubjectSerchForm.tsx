@@ -1,6 +1,7 @@
-import { FormLabel, Input, Button, VStack } from "@chakra-ui/react";
+import { FormLabel, Input, FormControl, VStack } from "@chakra-ui/react";
 import { useSearchSubject } from "../../../hooks/search/subject/useSearchSubject";
-import { ChangeEvent, useState, useCallback, useEffect } from "react";
+import { ChangeEvent, useState, useCallback } from "react";
+import { PrimaryButton } from "../../atoms/button/PrimaryButton";
 
 export const SubjectSerchForm = () => {
   const { getSubject } = useSearchSubject();
@@ -24,30 +25,42 @@ export const SubjectSerchForm = () => {
   return (
     <VStack>
       <VStack w="50vh">
-        <FormLabel htmlFor="name">建物名</FormLabel>
-        <Input
-          id="name"
-          placeholder="例: 1号館"
-          value={buildingName}
-          onChange={onChangeBuildingName}
-        />
-        <FormLabel htmlFor="name">教室名</FormLabel>
-        <Input
-          id="name"
-          placeholder="例: G2210"
-          value={className}
-          onChange={onChangeClassName}
-        />
-        <FormLabel htmlFor="name">科目名</FormLabel>
-        <Input
-          id="name"
-          placeholder="例: 情報数学"
-          value={subjectName}
-          onChange={onChangeSubjectName}
-        />
-        <Button mt={4} colorScheme="teal" onClick={onClickGetSubject}>
+        <FormControl>
+          <FormLabel htmlFor="name">建物名</FormLabel>
+          <Input
+            id="name"
+            placeholder="例: 1号館"
+            value={buildingName}
+            onChange={onChangeBuildingName}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="name">教室名</FormLabel>
+          <Input
+            id="name"
+            placeholder="例: G2210"
+            value={className}
+            onChange={onChangeClassName}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="name">科目名</FormLabel>
+          <Input
+            id="name"
+            placeholder="例: 情報数学"
+            value={subjectName}
+            onChange={onChangeSubjectName}
+          />
+        </FormControl>
+        <PrimaryButton
+          disabled={
+            buildingName === "" && className === "" && subjectName === ""
+          }
+          onClick={onClickGetSubject}
+        >
           検索
-        </Button>
+        </PrimaryButton>
+        ï
       </VStack>
     </VStack>
   );

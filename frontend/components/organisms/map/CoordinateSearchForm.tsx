@@ -1,36 +1,41 @@
 import { useSerchCoordinate } from "../../../hooks/search/coordinate/useSerchCoordinate";
+import { useState, ChangeEvent, useCallback } from "react";
+import { PrimaryButton } from "../../atoms/button/PrimaryButton";
 import {
   FormLabel,
   FormControl,
   Select,
-  Button,
   HStack,
   VStack,
   Stack,
 } from "@chakra-ui/react";
 
 export const CoordinateSearchForm = () => {
-  const {
-    getCoordinate,
-    placeOfDeparture,
-    setPlaceOfDeparture,
-    placeOfDestination,
-    setPlaceOfDestination,
-    Buildings,
-  } = useSerchCoordinate();
+  const { getCoordinate, Buildings } = useSerchCoordinate();
 
-  const onClickGetCoordinate = () => getCoordinate();
+  const [departure, setDeparture] = useState("");
+  const [destination, setDestination] = useState("");
+
+  const onChangeDeparture = (e: ChangeEvent<HTMLSelectElement>) =>
+    setDeparture(e.target.value);
+  const onChangeDestination = (e: ChangeEvent<HTMLSelectElement>) =>
+    setDestination(e.target.value);
+
+  const onClickGetCoordinate = useCallback(
+    () => getCoordinate({ departure, destination }),
+    [departure, destination, getCoordinate]
+  );
 
   return (
     <VStack>
-      <Stack w="100vh">
-        <HStack>
+      <VStack>
+        
           <FormControl>
             <FormLabel>出発地</FormLabel>
             <Select
               placeholder="出発地を選択"
-              value={placeOfDeparture}
-              onChange={(e) => setPlaceOfDeparture(e.target.value)}
+              value={departure}
+              onChange={onChangeDeparture}
             >
               {Buildings.map((building, index) => {
                 return <option key={index}>{building}</option>;
@@ -41,20 +46,23 @@ export const CoordinateSearchForm = () => {
             <FormLabel>目的地</FormLabel>
             <Select
               placeholder="目的地を選択"
-              value={placeOfDestination}
-              onChange={(e) => setPlaceOfDestination(e.target.value)}
+              value={destination}
+              onChange={onChangeDestination}
             >
               {Buildings.map((building, index) => {
                 return <option key={index}>{building}</option>;
               })}
             </Select>
           </FormControl>
-        </HStack>
+       
 
-        <Button mt={4} colorScheme="teal" onClick={onClickGetCoordinate}>
+        <PrimaryButton
+          disabled={departure === "" || destination === ""}
+          onClick={onClickGetCoordinate}
+        >
           ナビゲーション開始
-        </Button>
-      </Stack>
+        </PrimaryButton>
+      </VStack>
     </VStack>
   );
 };

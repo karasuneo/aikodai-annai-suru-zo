@@ -1,20 +1,16 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 export const useSerchCoordinate = () => {
-  const [placeOfDeparture, setPlaceOfDeparture] = useState("");
-  const [placeOfDestination, setPlaceOfDestination] = useState("");
   const router = useRouter();
 
-  const getCoordinate = () => {
-    setPlaceOfDeparture("");
-    setPlaceOfDestination("");
+  const getCoordinate = (props: CoordinateQuery) => {
+    const {departure, destination} = props
 
     router.push({
       pathname: "/map",
       query: {
-        placeOfDeparture: placeOfDeparture,
-        placeOfDestination: placeOfDestination,
+        placeOfDeparture: departure,
+        placeOfDestination: destination,
       },
     });
   };
@@ -84,10 +80,6 @@ export const useSerchCoordinate = () => {
 
   return {
     getCoordinate,
-    placeOfDeparture,
-    setPlaceOfDeparture,
-    placeOfDestination,
-    setPlaceOfDestination,
     Buildings,
   };
 };

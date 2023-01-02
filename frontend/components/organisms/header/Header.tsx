@@ -10,14 +10,12 @@ export const Header = () => {
   };
   return (
     <Flex
-      position="fixed"
-      top={0}
-      width="full"
-      shadow="sm"
-      py={4}
-      px={8}
-      zIndex="9999"
-      align="center"
+    as="nav"
+    bg="teal.500"
+    color="gray.50"
+    align="center"
+    justify="space-between"
+    padding={{ base: 3, md: 5 }}
     >
       <Heading cursor="pointer" size="md" onClick={() => handleRedirect()}>
         愛工大案内する蔵
