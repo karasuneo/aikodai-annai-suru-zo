@@ -1,5 +1,5 @@
 // 緯度経度を表示するための型
-interface coordinateQuery {
+interface CoordinateQuery {
   from: string;
   to: string;
 }

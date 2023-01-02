@@ -1,5 +1,10 @@
 import { SubjectSerchForm } from "../components/organisms/subject/SubjectSerchForm";
+import { HeaderLayout } from "../components/templates/HeaderLayout";
 
 export default function Subject() {
-  return <SubjectSerchForm></SubjectSerchForm>;
+  return (
+    <HeaderLayout>
+      <SubjectSerchForm />
+    </HeaderLayout>
+  );
 }

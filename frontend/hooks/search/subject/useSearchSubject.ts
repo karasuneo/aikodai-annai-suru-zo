@@ -1,16 +1,10 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 export const useSearchSubject = () => {
-  const [buildingName, setBuildingName] = useState("");
-  const [className, setClassName] = useState("");
-  const [subjectName, setSubjectName] = useState("");
   const router = useRouter();
 
-  const getSubject = () => {
-    setBuildingName("");
-    setClassName("");
-    setSubjectName("");
+  const getSubject = (props: SubjectQuery) => {
+    const { buildingName, className, subjectName } = props;
 
     router.push({
       pathname: "/subject",
@@ -23,11 +17,5 @@ export const useSearchSubject = () => {
   };
   return {
     getSubject,
-    buildingName,
-    setBuildingName,
-    className,
-    setClassName,
-    subjectName,
-    setSubjectName,
   };
 };
