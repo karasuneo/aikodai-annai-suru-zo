@@ -4,16 +4,21 @@ import {
   HStack,
   useColorModeValue,
   Text,
-  FlexProps,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
+import { FiMenu, FiSearch } from "react-icons/fi";
 import { UserIcon } from "../../atoms/user/UserIcon";
+import { UserDetailModal } from "../map/CoordinateSearchModal";
+import { FC } from "react";
 
-interface MobileProps extends FlexProps {
-  onOpen: () => void;
+interface Props {
+  onMenuOpen: () => void;
 }
 
-export const Header = ({ onOpen, ...rest }: MobileProps) => {
+export const Header: FC<Props> = (props) => {
+  const { onMenuOpen, ...rest } = props;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -28,7 +33,7 @@ export const Header = ({ onOpen, ...rest }: MobileProps) => {
     >
       <IconButton
         display={{ base: "flex", md: "none" }}
-        onClick={onOpen}
+        onClick={onMenuOpen}
         variant="outline"
         aria-label="open menu"
         icon={<FiMenu />}
@@ -45,11 +50,13 @@ export const Header = ({ onOpen, ...rest }: MobileProps) => {
         <IconButton
           size="lg"
           variant="ghost"
+          onClick={onOpen}
           aria-label="open menu"
-          icon={<FiBell />}
+          icon={<FiSearch />}
         />
         <UserIcon />
       </HStack>
+      <UserDetailModal isOpen={isOpen} onClose={onClose}  />
     </Flex>
   );
 };

@@ -37,7 +37,7 @@ export const DefaultLayput: FC<Props> = (props) => {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      <Header onOpen={onOpen} />
+      <Header onMenuOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p={4}>
         {children}
       </Box>

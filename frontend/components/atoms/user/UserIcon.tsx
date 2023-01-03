@@ -1,4 +1,3 @@
-import { UserProfile } from './UserIcon';
 import {
   Avatar,
   Box,
