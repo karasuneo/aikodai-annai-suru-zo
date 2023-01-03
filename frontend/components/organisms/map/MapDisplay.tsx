@@ -13,12 +13,6 @@ import {
   Polyline,
 } from "react-leaflet";
 
-L.Icon.Default.mergeOptions({
-  iconUrl: markerIcon.src,
-  iconRetinaUrl: markerIcon2x.src,
-  shadowUrl: markerShadow.src,
-});
-
 export default function MapDisplay(props: {
   coordinateDatas: Array<CoordinateProps>;
 }) {

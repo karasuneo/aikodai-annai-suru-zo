@@ -40,6 +40,6 @@ export const usePosition = () => {
         }
       }
     );
-  }, []);
+  }, [showMessage]);
   return { position, getPosition };
 };
