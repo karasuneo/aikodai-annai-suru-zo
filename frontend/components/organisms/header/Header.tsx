@@ -1,29 +1,62 @@
-import { useRouter } from "next/router";
-import { RiGithubFill } from "react-icons/ri";
-import Link from "next/link";
-import { Flex, Box, Spacer, Heading, HStack, Center, Button } from "@chakra-ui/react";
+import {
+  IconButton,
+  Flex,
+  HStack,
+  useColorModeValue,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { FiMenu, FiSearch } from "react-icons/fi";
+import { UserIcon } from "../../atoms/user/UserIcon";
+import { UserDetailModal } from "../map/CoordinateSearchModal";
+import { FC } from "react";
 
-export const Header = () => {
-  const router = useRouter();
-  const handleRedirect = async () => {
-    router.reload();
-  };
+interface Props {
+  onMenuOpen: () => void;
+}
+
+export const Header: FC<Props> = (props) => {
+  const { onMenuOpen, ...rest } = props;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex
-      position="fixed"
-      top={0}
-      width="full"
-      shadow="sm"
-      py={4}
-      px={8}
-      zIndex="9999"
-      align="center"
+      ml={{ base: 0, md: 60 }}
+      px={{ base: 4, md: 4 }}
+      height="20"
+      alignItems="center"
+      bg={useColorModeValue("white", "gray.900")}
+      borderBottomWidth="1px"
+      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      justifyContent={{ base: "space-between", md: "flex-end" }}
+      {...rest}
     >
-      <Heading cursor="pointer" size="md" onClick={() => handleRedirect()}>
+      <IconButton
+        display={{ base: "flex", md: "none" }}
+        onClick={onMenuOpen}
+        variant="outline"
+        aria-label="open menu"
+        icon={<FiMenu />}
+      />
+      <Text
+        display={{ base: "flex", md: "none" }}
+        fontSize="2xl"
+        fontFamily="monospace"
+        fontWeight="bold"
+      >
         愛工大案内する蔵
-      </Heading>
-      <Spacer />
-      <Button>サインイン</Button>
+      </Text>
+      <HStack spacing={{ base: "0", md: "6" }}>
+        <IconButton
+          size="lg"
+          variant="ghost"
+          onClick={onOpen}
+          aria-label="open menu"
+          icon={<FiSearch />}
+        />
+        <UserIcon />
+      </HStack>
+      <UserDetailModal isOpen={isOpen} onClose={onClose}  />
     </Flex>
   );
 };

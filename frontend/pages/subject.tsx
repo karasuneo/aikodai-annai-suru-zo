@@ -1,23 +1,8 @@
 import { SubjectsList } from "../components/organisms/subject/SubjectsList";
 import { GetServerSideProps } from "next";
-import {
-  Box,
-  HStack,
-  Flex,
-  Spacer,
-  Center,
-  Divider,
-  VStack,
-} from "@chakra-ui/react";
-import { HeaderOnly } from "../components/templates/HeaderOnly";
-import { DefaultLayout } from "../components/templates/DefaultLayout";
-import { Header } from "../components/organisms/header/Header";
-import { SubjectSerchForm } from "../components/organisms/subject/SubjectSerchForm";
-import { CoordinateSearchForm } from "../components/organisms/map/CoordinateSearchForm";
-import { SideNav } from "../components/organisms/SideNav";
-import { Timetable } from "../components/molecules/timetable/Timetable";
-import { SubjectPageLayout } from "../components/templates/SubjectPageLayout";
-import { ParsedUrlQueryInput } from "querystring";
+import { DefaultLayput } from '../components/templates/DefaultLayput';
+
+
 
 export default function Subject(props: {
   subjectDatas: Array<SubjectDetailProps>;
@@ -25,21 +10,12 @@ export default function Subject(props: {
   const { subjectDatas } = props;
 
   return (
-    // <DefaultLayout>
-
-    //     <Header />
-
-    //     {/* <SubjectsList subjectDatas={subjectDatas} /> */}
-
-    <SubjectsList subjectDatas={subjectDatas} />
-
-    // <Timetable />
-    // <SideNav  />
-    // </DefaultLayout>
-    // <SubjectSerchForm />
-    // <CoordinateSearchForm />
+    <DefaultLayput>
+      <SubjectsList subjectDatas={subjectDatas} />
+    </DefaultLayput>
   );
 }
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const bn = context.query.buildingName;
   const rn = context.query.className;
