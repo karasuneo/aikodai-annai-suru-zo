@@ -15,9 +15,8 @@ interface SidebarProps extends BoxProps {
 
 const LinkItems: Array<LinkItemProps> = [
   { name: "ホーム", icon: FiHome, link: "/" },
-  { name: "道案内", icon: FiNavigation, link: "/subjectsearch" },
   { name: "時間割", icon: FiGrid, link: "/timetable" },
-  { name: "学内マップ", icon: FiMap, link: "/map" },
+  { name: "マップ", icon: FiMap, link: "/map" },
 ];
 
 export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
