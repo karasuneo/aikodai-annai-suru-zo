@@ -14,10 +14,10 @@ interface SidebarProps extends BoxProps {
 }
 
 const LinkItems: Array<LinkItemProps> = [
-  { name: "ホーム", icon: FiHome },
-  { name: "道案内", icon: FiNavigation },
-  { name: "時間割", icon: FiGrid },
-  { name: "学内マップ", icon: FiMap },
+  { name: "ホーム", icon: FiHome, link: "/" },
+  { name: "道案内", icon: FiNavigation, link: "/subjectsearch" },
+  { name: "時間割", icon: FiGrid, link: "/timetable" },
+  { name: "学内マップ", icon: FiMap, link: "/map" },
 ];
 
 export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
@@ -39,7 +39,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} link={link.link}>
           {link.name}
         </NavItem>
       ))}
