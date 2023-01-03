@@ -1,9 +1,29 @@
-import { FormLabel, Input, FormControl, VStack } from "@chakra-ui/react";
-import { useSearchSubject } from "../../../hooks/search/subject/useSearchSubject";
-import { ChangeEvent, useState, useCallback } from "react";
-import { PrimaryButton } from "../../atoms/button/PrimaryButton";
+import { FC, useState, ChangeEvent, useCallback } from "react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  FormControl,
+  Stack,
+  FormLabel,
+  ModalFooter,
+  Input,
+} from "@chakra-ui/react";
 
-export const SubjectSerchForm = () => {
+import { PrimaryButton } from "../../atoms/button/PrimaryButton";
+import { useSearchSubject } from "../../../hooks/search/subject/useSearchSubject";
+
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const UserDetailModal: FC<Props> = (props) => {
+  const { isOpen, onClose } = props;
+
   const { getSubject } = useSearchSubject();
 
   const [buildingName, setBuildingName] = useState("");
@@ -21,47 +41,59 @@ export const SubjectSerchForm = () => {
     () => getSubject({ buildingName, className, subjectName }),
     [buildingName, className, subjectName, getSubject]
   );
-
   return (
-    <VStack>
-      <VStack w="50vh">
-        <FormControl>
-          <FormLabel htmlFor="name">建物名</FormLabel>
-          <Input
-            id="name"
-            placeholder="例: 1号館"
-            value={buildingName}
-            onChange={onChangeBuildingName}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="name">教室名</FormLabel>
-          <Input
-            id="name"
-            placeholder="例: G2210"
-            value={className}
-            onChange={onChangeClassName}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="name">科目名</FormLabel>
-          <Input
-            id="name"
-            placeholder="例: 情報数学"
-            value={subjectName}
-            onChange={onChangeSubjectName}
-          />
-        </FormControl>
-        <PrimaryButton
-          disabled={
-            buildingName === "" && className === "" && subjectName === ""
-          }
-          onClick={onClickGetSubject}
-        >
-          検索
-        </PrimaryButton>
-        ï
-      </VStack>
-    </VStack>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      autoFocus={false}
+      motionPreset="slideInBottom"
+    >
+      <ModalOverlay />
+      <ModalContent pb={2}>
+        <ModalHeader>経路探索</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody mx={4}>
+          <Stack spacing={4}>
+            <FormControl>
+              <FormLabel htmlFor="name">建物名</FormLabel>
+              <Input
+                id="name"
+                placeholder="例: 1号館"
+                value={buildingName}
+                onChange={onChangeBuildingName}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="name">教室名</FormLabel>
+              <Input
+                id="name"
+                placeholder="例: G2210"
+                value={className}
+                onChange={onChangeClassName}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="name">科目名</FormLabel>
+              <Input
+                id="name"
+                placeholder="例: 情報数学"
+                value={subjectName}
+                onChange={onChangeSubjectName}
+              />
+            </FormControl>
+          </Stack>
+        </ModalBody>
+        <ModalFooter>
+          <PrimaryButton
+            disabled={
+              buildingName === "" && className === "" && subjectName === ""
+            }
+            onClick={onClickGetSubject}
+          >
+            検索
+          </PrimaryButton>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
