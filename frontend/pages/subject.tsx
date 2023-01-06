@@ -1,4 +1,4 @@
-import { SubjectsList } from "../components/organisms/subject/SubjectsList";
+import { SubjectsList } from "../components/organisms/subject/SubjectList";
 import { GetServerSideProps } from "next";
 import { DefaultLayput } from '../components/templates/DefaultLayput';
 

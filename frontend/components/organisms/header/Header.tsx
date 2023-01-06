@@ -56,7 +56,7 @@ export const Header: FC<Props> = (props) => {
         />
         <UserIcon />
       </HStack>
-      <UserDetailModal isOpen={isOpen} onClose={onClose}  />
+      <UserDetailModal isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
 };

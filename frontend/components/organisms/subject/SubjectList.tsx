@@ -1,19 +1,21 @@
 import { Flex, Stack } from "@chakra-ui/react";
 import { SubjectCard } from "../../molecules/subject/SubjectCard";
+import { FC } from "react";
 
-export const SubjectsList = (props: {
-  subjectDatas: Array<SubjectDetailProps>;
-}) => {
-  const { subjectDatas } = props;
+interface Props {
+  subjectReults: Array<SubjectDetail>;
+}
+
+export const SubjectsList: FC<Props> = (props) => {
+  const { subjectReults } = props;
 
   return (
     <>
       <Stack spacing={0}>
-        {subjectDatas?.map((data) => {
+        {subjectReults?.map((data) => {
           return (
             <Flex p={4} shadow="md" borderWidth="1px" key={data.id}>
               <SubjectCard
-                id={data.id}
                 subjectName={data.subjectName}
                 buildingName={data.buildingName}
                 roomNumber={data.roomNumber}

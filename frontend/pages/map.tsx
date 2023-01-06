@@ -3,6 +3,10 @@ import { GetServerSideProps } from "next";
 
 import { DefaultLayput } from "../components/templates/DefaultLayput";
 
+interface Props {
+  coordinates: Array<Coordinate>;
+}
+
 const MapDisplay = dynamic(
   () => import("../components/organisms/map/MapDisplay"),
   {
@@ -10,13 +14,11 @@ const MapDisplay = dynamic(
   }
 );
 
-export default function MapPage(props: {
-  coordinateDatas: Array<CoordinateProps>;
-}) {
-  const { coordinateDatas } = props;
+export default function MapPage(props: Props) {
+  const { coordinates } = props;
   return (
     <DefaultLayput>
-      <MapDisplay coordinateDatas={coordinateDatas} />
+      <MapDisplay coordinates={coordinates} />
     </DefaultLayput>
   );
 }
@@ -29,9 +31,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `http://localhost:8080/coordinate?fr=${fr}&to=${to}`
   );
 
-  const coordinateDatas = await response.json();
+  const coordinates = await response.json();
 
   return {
-    props: { coordinateDatas },
+    props: { coordinates },
   };
 };

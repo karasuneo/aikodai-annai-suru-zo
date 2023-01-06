@@ -1,5 +1,5 @@
 // 緯度経度を表示するための型
-interface CoordinateProps {
+interface Coordinate {
   latitude: number;
   longitude: number;
 }

@@ -10,10 +10,12 @@ import {
   Polyline,
 } from "react-leaflet";
 
-export default function MapDisplay(props: {
-  coordinateDatas: Array<CoordinateProps>;
-}) {
-  const { coordinateDatas } = props;
+interface Props {
+  coordinates: Array<Coordinate>;
+}
+
+export default function MapDisplay(props: Props) {
+  const { coordinates } = props;
   const { position, getPosition } = usePosition();
 
   const centerPosition: L.LatLngExpression = [
@@ -21,7 +23,7 @@ export default function MapDisplay(props: {
   ];
 
   const coodiante: L.LatLngExpression[][] = [
-    coordinateDatas.map((data) => {
+    coordinates.map((data) => {
       return [data.latitude, data.longitude];
     }),
   ];

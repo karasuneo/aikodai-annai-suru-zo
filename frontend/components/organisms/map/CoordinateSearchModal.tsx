@@ -65,9 +65,9 @@ export const UserDetailModal: FC<Props> = (props) => {
               </Select>
             </FormControl>
             <FormControl>
-              <FormLabel>出発地</FormLabel>
+              <FormLabel>目的地</FormLabel>
               <Select
-                value={departure}
+                value={destination}
                 placeholder="目的地を選択"
                 onChange={onChangeDestination}
               >

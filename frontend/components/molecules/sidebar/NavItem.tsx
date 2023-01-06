@@ -1,15 +1,14 @@
-import { FC } from "react";
-import { Flex, Icon, Link } from "@chakra-ui/react";
+import { FC, ReactNode } from "react";
 import { IconType } from "react-icons";
+import { Flex, Icon, Link } from "@chakra-ui/react";
 
-// サイドバーをの項目を表示するための型
-interface SidebarItemProps {
+interface Props {
   link: string;
   icon: IconType;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export const NavItem: FC<SidebarItemProps> = (props) => {
+export const NavItem: FC<Props> = (props) => {
   const { link, icon, children } = props;
   return (
     <Link

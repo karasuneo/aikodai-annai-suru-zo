@@ -2,7 +2,16 @@ import { Box, Heading, Stack, Spacer, Button } from "@chakra-ui/react";
 import { SubjectTitleWithInfomation } from "../../atoms/subject/SubjectTitleWithInfomation";
 import { FC } from "react";
 
-export const SubjectCard: FC<SubjectDetailProps> = (props) => {
+interface Props {
+  subjectName: string;
+  buildingName: string;
+  roomNumber: string;
+  folderName: string;
+  grade: string;
+  classification: string;
+}
+
+export const SubjectCard: FC<Props> = (props) => {
   const {
     subjectName,
     buildingName,
